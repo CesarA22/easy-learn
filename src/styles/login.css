@@ -53,3 +53,19 @@ body {
     background-color: #0056b3;
   }
   
+  .create-account-link {
+    margin-top: 20px;
+  }
+  
+  .create-account-link p {
+    color: white;
+  }
+  
+  .create-account-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .create-account-link a:hover {
+    text-decoration: underline;
+  }

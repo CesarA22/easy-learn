@@ -71,3 +71,20 @@ body {
     color: #f44336;
   }
   
+  .login-link {
+    margin-top: 20px;
+  }
+  
+  .login-link p {
+    color: white;
+  }
+  
+  .login-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
