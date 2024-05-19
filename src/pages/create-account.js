@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './src/create-account.css';
+import '../styles/create-account.css';
 
 function CreateAccount() {
   const [password, setPassword] = useState('');
@@ -27,17 +27,17 @@ function CreateAccount() {
           <input type="text" placeholder="Seu nome" />
           <input type="email" placeholder="Seu e-mail" />
           <input type="tel" placeholder="Seu número (com DDD)" />
-          <input 
-            type="password" 
-            placeholder="Sua senha" 
+          <input
+            type="password"
+            placeholder="Sua senha"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} 
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <input 
-            type="password" 
-            placeholder="Repita sua senha" 
+          <input
+            type="password"
+            placeholder="Repita sua senha"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)} 
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <div className="password-conditions">
             {validatePassword().map((condition, index) => (

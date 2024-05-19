@@ -1,9 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import './src/styles/products.css';
+import { useNavigate } from 'react-router-dom';
+import '../styles/products.css';
 
 function Products() {
-  const history = useHistory();
+  const history = useNavigate();
 
   return (
     <div className="products-container">

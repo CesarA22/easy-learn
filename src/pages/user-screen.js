@@ -1,10 +1,9 @@
-// src/components/UserScreen.js
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import './src/styles/user-screen.css';
+import { useNavigate } from 'react-router-dom';
+import '../styles/user-screen.css';
 
 function UserScreen() {
-  const history = useHistory();
+  const history = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {

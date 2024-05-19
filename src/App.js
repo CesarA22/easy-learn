@@ -1,24 +1,26 @@
 // src/App.js
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Login from './src/pages/login';
-import CreateAccount from './src/pages/create-account';
-import DashboardUser from './src/pages/dashboard-user';
-import UserScreen from './src/pages/user-screen';
-import './src/styles/login.css';
-import './src/styles/create-account.css';
-import './src/styles/dashboard-user.css';
-import './src/styles/user-screen.css';
+import CreateAccount from './pages/create-account.js';
+import DashboardUser from './pages/dashboard-user.js';
+import Login from './pages/login.js';
+import Products from './pages/products.js';
+import UserScreen from './pages/user-screen.js';
+import './styles/create-account.css';
+import './styles/dashboard-user.css';
+import './styles/login.css';
+import './styles/products.css';
+import './styles/user-screen.css';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" component={Login} />
-        {/* Coloquei a rota raiz para o login, mas pode ser trocado depois */}
-        <Route path="/create-account" component={CreateAccount} />
-        <Route path="/dashboard-user" component={DashboardUser} />
-        <Route path="/user-screen" component={UserScreen} />
+        <Route path="/" element={<Login />} />
+        <Route path="/create-account" element={<CreateAccount />} />
+        <Route path="/dashboard-user" element={<DashboardUser />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/user-screen" element={<UserScreen />} />
       </Routes>
     </div>
   );
