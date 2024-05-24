@@ -18,12 +18,12 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/dashboard-user" element={<DashboardUser />} />
-        <Route path="/landing-page" element={<LandingPage />} />
         <Route path="/products" element={<Products />} />
         <Route path="/user-screen" element={<UserScreen />} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
     </div>
   );

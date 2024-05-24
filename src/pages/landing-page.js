@@ -8,7 +8,7 @@ const LandingPage = () => {
         <h1>Easy Learn</h1>
         <nav>
           <button className="button" onClick={() => window.location.href = '/create-account'}>Criar Conta</button>
-          <button className="button" onClick={() => window.location.href = '/signup'}>Cadastrar-se</button>
+          <button className="button" onClick={() => window.location.href = '/login'}>Login</button>
         </nav>
       </header>
       <section className="main-content">
