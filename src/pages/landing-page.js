@@ -26,7 +26,10 @@ const LandingPage = () => {
               <p>"Exemplo1 - Easy Learn me ajudou a alcançar meus objetivos de aprendizado de forma rápida e eficaz!"</p>
             </div>
             <div className="testimonial">
-              <p>"Exemplo2 - Excelente plataforma com conteúdo atualizado e instrutores muito qualificados."</p>
+              <p>"Exemplo2 - Ótima plataforma com professores marivilhosos, como: Matheus Valverde Lindo e Cesar Camote super bonito"</p>
+            </div>
+            <div className="testimonial">
+              <p>"Exemplo3 - Excelente plataforma com conteúdo atualizado e instrutores muito qualificados."</p>
             </div>
           </div>
         </div>
@@ -43,6 +46,10 @@ const LandingPage = () => {
         <div className="course">
           <h3>Curso de Marketing Digital</h3>
           <p>Domine as estratégias de marketing online e impulsione seus negócios na internet.</p>
+        </div>
+        <div className="course">
+          <h3>Curso de Valorant</h3>
+          <p>Aprenda a ser o melhor jogador do mundo com Matheus Valverde e Cesar Camote!</p>
         </div>
       </div>
       <form className="contact-form">
