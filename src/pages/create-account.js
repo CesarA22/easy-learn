@@ -1,10 +1,16 @@
+// src/components/CreateAccount.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/create-account.css';
 
 function CreateAccount() {
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
 
   const validatePassword = () => {
     const conditions = [
@@ -15,18 +21,47 @@ function CreateAccount() {
       { text: 'Pelo menos 1 letra maiúscula', valid: /[A-Z]/.test(password) },
       { text: 'As senhas digitadas conferem', valid: password === confirmPassword }
     ];
-
     return conditions;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const conditions = validatePassword();
+    const valid = conditions.every(condition => condition.valid);
+
+    if (!valid) {
+      setError('Por favor, verifique os requisitos da senha.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password, confirmPassword })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        navigate('/login');
+      } else {
+        setError(data.error);
+      }
+    } catch (err) {
+      setError('Erro ao registrar usuário.');
+    }
   };
 
   return (
     <div className="create-account-container">
       <div className="create-account-box">
         <h1>Criar conta</h1>
-        <form>
-          <input type="text" placeholder="Seu nome" />
-          <input type="email" placeholder="Seu e-mail" />
-          <input type="tel" placeholder="Seu número (com DDD)" />
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Seu nome" value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="email" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="tel" placeholder="Seu número (com DDD)" value={phone} onChange={(e) => setPhone(e.target.value)} />
           <input
             type="password"
             placeholder="Sua senha"
