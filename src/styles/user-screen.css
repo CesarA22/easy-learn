@@ -1,3 +1,4 @@
+/* src/styles/UserScreen.css */
 body {
   margin: 0;
   padding: 0;
@@ -55,16 +56,14 @@ header h1 {
   margin-bottom: 20px;
 }
 
-.profile,
-.business {
+.profile {
   background-color: #1e1e1e;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
 }
 
-.profile-content,
-.business-content {
+.profile-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -100,134 +99,25 @@ header h1 {
   cursor: pointer;
 }
 
-.profile-details,
-.profile-verification {
+.profile-details {
   flex: 1;
   margin-right: 20px;
 }
 
-.profile-details p,
-.profile-verification p {
+.profile-details p {
   margin: 5px 0;
 }
 
-.verified {
-  color: green;
-}
-
-.edit-button,
-.new-business-button {
-  background-color: #007bff;
+.logout-button {
+  background-color: #ff4d4d;
   color: white;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
   cursor: pointer;
+  margin-top: 20px;
 }
 
-.edit-button:hover,
-.new-business-button:hover {
-  background-color: #0056b3;
-}
-
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: flex-end;
-}
-
-.edit-sidebar {
-  width: 400px;
-  background: #1e1e1e;
-  height: 100%;
-  overflow-y: auto;
-  position: relative;
-  padding: 20px;
-}
-
-.edit-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.edit-header h2 {
-  margin: 0;
-}
-
-.close-btn {
-  cursor: pointer;
-  font-size: 24px;
-}
-
-.edit-content section {
-  margin-bottom: 20px;
-}
-
-.edit-content h3 {
-  margin-bottom: 10px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group select,
-.form-group button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background: #2b2b2b;
-  color: white;
-}
-
-.form-group button {
-  background: #007bff;
-  cursor: pointer;
-}
-
-.form-group button:hover {
-  background: #0056b3;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.cancel-btn,
-.save-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.cancel-btn {
-  background: #555;
-}
-
-.cancel-btn:hover {
-  background: #333;
-}
-
-.save-btn {
-  background: #28a745;
-}
-
-.save-btn:hover {
-  background: #218838;
+.logout-button:hover {
+  background-color: #cc0000;
 }

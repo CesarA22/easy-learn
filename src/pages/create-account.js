@@ -1,10 +1,12 @@
 // src/components/CreateAccount.js
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/create-account.css';
+import { AuthContext } from '../context/AuthContext';
 
 function CreateAccount() {
   const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -44,7 +46,8 @@ function CreateAccount() {
       const data = await response.json();
 
       if (response.ok) {
-        navigate('/login');
+        setUser({ name, email });  // Salvar as informações do usuário no contexto
+        navigate('/user-screen');  // Redirecionar para a tela do usuário
       } else {
         setError(data.error);
       }

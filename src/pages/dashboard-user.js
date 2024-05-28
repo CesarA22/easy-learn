@@ -1,31 +1,33 @@
-import React from 'react';
+// src/components/DashboardUser.js
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard-user.css';
+import { AuthContext } from '../context/AuthContext';
 
 function DashboardUser() {
-  const history = useNavigate();
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
-        <div className="logo" onClick={() => history.push('/login')}>Easy Learn</div>
+        <div className="logo" onClick={() => navigate('/login')}>Easy Learn</div>
         <nav className="menu">
           <ul>
-            <li onClick={() => history.push('/dashboard-user')}>Dashboard</li>
+            <li onClick={() => navigate('/dashboard-user')}>Dashboard</li>
+            <li onClick={() => navigate('/products')}>Produtos</li>
             <li>Vendas</li>
-            <li>Produtos</li>
             <li>Finanças</li>
           </ul>
         </nav>
         <div className="settings">
           <p>Configurações</p>
-          <p onClick={() => history.push('/user-screen')}>Carlos Eduardo</p>
-          <li onClick={() => history.push('/products')}>Produtos</li>
+          <p onClick={() => navigate('/user-screen')}>{user ? user.name : 'Nome do perfil'}</p>
         </div>
       </aside>
       <main className="main-content">
         <header>
-          <h1>Boas-vindas, Carlos</h1>
+          <h1>Boas-vindas, {user ? user.name.split(' ')[0] : 'Usuário'}</h1>
         </header>
         <section className="summary">
           <div className="summary-item">Vendas hoje <span>R$ 0.00</span></div>
