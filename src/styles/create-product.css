@@ -1,0 +1,123 @@
+body {
+    color: #FFFFFF;
+    background-color: #1C1C1C;
+  }
+  
+  .sidebar-container {
+    width: 250px;
+    height: 100vh;
+    background-color: #1C1C1C;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .menu-item {
+    margin: 10px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+  }
+  
+  .bottom-menu {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+  }
+
+  .upload-container {
+    border: 2px dashed #bdc3c7;
+    background-color: #363636;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+  }
+  
+  .upload-button {
+    background-color: #5483FC;
+    border: none;
+    font-size: 2em;
+    color: #1C1C1C;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+ 
+  .field-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+  
+  .input, .textarea {
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    background-color: #363636;
+    color: #FFFFFF;
+  }
+ 
+  .page-container {
+    display: flex;
+    background-color: #1C1C1C;
+    color: #FFFFFF;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #1C1C1C;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .left-container {
+    flex: 3;
+    padding-right: 20px;
+  }
+  
+  .right-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
