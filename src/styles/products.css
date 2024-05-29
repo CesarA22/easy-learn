@@ -49,6 +49,7 @@ body {
 .main-content {
   flex: 1;
   padding: 20px;
+  overflow-y: auto;
 }
 
 header h1 {
@@ -59,6 +60,25 @@ header h1 {
 header h2 {
   font-size: 20px;
   margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.add-product-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.add-product-button:hover {
+  background-color: #0056b3;
 }
 
 .product-list {

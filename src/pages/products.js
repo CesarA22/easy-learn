@@ -50,6 +50,9 @@ function Products() {
           <h1>Bem-vindo, {user ? user.name.split(' ')[0] : 'Usuário'}</h1>
           <h2>Aqui estão os seus produtos</h2>
         </header>
+        <section className="actions">
+          <button onClick={() => navigate('/create-product')} className="add-product-button">Adicionar Produto</button>
+        </section>
         {hasProducts ? (
           <section className="product-list">
             {products.map((product) => (
@@ -67,7 +70,6 @@ function Products() {
         ) : (
           <div className="no-products">
             <p>Você ainda não tem nenhum produto cadastrado.</p>
-            <button onClick={() => navigate('/create-product')}>Adicionar Produto</button>
           </div>
         )}
       </main>

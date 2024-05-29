@@ -1,3 +1,4 @@
+/* src/styles/DashboardUser.css */
 body {
   margin: 0;
   padding: 0;
@@ -24,6 +25,7 @@ body {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .menu ul {
@@ -33,15 +35,21 @@ body {
 
 .menu ul li {
   margin: 10px 0;
+  cursor: pointer;
 }
 
 .settings {
   margin-top: 20px;
 }
 
+.settings p {
+  cursor: pointer;
+}
+
 .main-content {
   flex: 1;
   padding: 20px;
+  overflow-y: auto;
 }
 
 header h1 {
@@ -49,39 +57,38 @@ header h1 {
   margin-bottom: 20px;
 }
 
+section {
+  margin-bottom: 20px;
+}
+
 .summary {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 
 .summary-item {
-  background-color: #2b2b2b;
+  background-color: #4a4a4a;
   padding: 20px;
   border-radius: 8px;
+  text-align: center;
   flex: 1;
   margin: 0 10px;
-  text-align: center;
-}
-
-.chart {
-  margin-bottom: 20px;
 }
 
 .chart-content {
-  height: 200px;
-  background-color: #2b2b2b;
+  height: 300px;
+  background-color: #4a4a4a;
   border-radius: 8px;
 }
 
 .details {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: space-around;
 }
 
 .detail-item {
-  background-color: #2b2b2b;
+  background-color: #4a4a4a;
   padding: 20px;
   border-radius: 8px;
   flex: 1;
@@ -90,24 +97,28 @@ header h1 {
 }
 
 .products {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .product-item {
-  background-color: #2b2b2b;
+  background-color: #4a4a4a;
   padding: 20px;
   border-radius: 8px;
   margin: 10px 0;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
 }
 
 .finances {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: space-around;
 }
 
 .finance-item {
-  background-color: #2b2b2b;
+  background-color: #4a4a4a;
   padding: 20px;
   border-radius: 8px;
   flex: 1;
@@ -116,27 +127,31 @@ header h1 {
 }
 
 .withdraw {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .withdraw-form {
   display: flex;
+  justify-content: center;
   align-items: center;
+  margin-top: 10px;
 }
 
 .withdraw-form input {
   padding: 10px;
-  border: none;
   border-radius: 4px;
+  border: 1px solid #ccc;
   margin-right: 10px;
 }
 
 .withdraw-form button {
-  padding: 10px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
   background-color: #007bff;
   color: white;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -145,7 +160,8 @@ header h1 {
 }
 
 .extract {
-  background-color: #2b2b2b;
+  background-color: #4a4a4a;
   padding: 20px;
   border-radius: 8px;
+  text-align: center;
 }
