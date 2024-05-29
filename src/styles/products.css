@@ -1,3 +1,4 @@
+/* src/styles/Products.css */
 body {
   margin: 0;
   padding: 0;
@@ -101,4 +102,26 @@ header h2 {
 
 .product-details p {
   margin: 0;
+}
+
+.no-products {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.no-products p {
+  margin: 20px 0;
+}
+
+.no-products button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.no-products button:hover {
+  background-color: #0056b3;
 }
