@@ -39,7 +39,7 @@ function Login() {
       <div className="login-box">
         <h1>Login</h1>
         {error && <p className="error">{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='login__form'>
           <input
             type="email"
             placeholder="Seu e-mail"
@@ -52,7 +52,7 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Entrar</button>
+          <button type="submit" className='login__btn'>Entrar</button>
         </form>
         <div className="register-link">
           <p>Não tem uma conta? <Link to="/create-account">Crie uma conta</Link></p>

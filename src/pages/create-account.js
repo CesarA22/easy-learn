@@ -61,7 +61,7 @@ function CreateAccount() {
       <div className="create-account-box">
         <h1>Criar conta</h1>
         {error && <p className="error">{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='create-account__form'>
           <input type="text" placeholder="Seu nome" value={name} onChange={(e) => setName(e.target.value)} />
           <input type="email" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="tel" placeholder="Seu número (com DDD)" value={phone} onChange={(e) => setPhone(e.target.value)} />
