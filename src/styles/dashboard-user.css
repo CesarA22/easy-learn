@@ -57,10 +57,6 @@ header h1 {
   margin-bottom: 20px;
 }
 
-section {
-  margin-bottom: 20px;
-}
-
 .summary {
   display: flex;
   justify-content: space-around;
@@ -76,49 +72,59 @@ section {
   margin: 0 10px;
 }
 
-.chart-content {
-  height: 300px;
-  background-color: #4a4a4a;
-  border-radius: 8px;
-}
-
-.details {
-  display: flex;
-  justify-content: space-around;
-}
-
-.detail-item {
+.chart {
   background-color: #4a4a4a;
   padding: 20px;
   border-radius: 8px;
-  flex: 1;
-  margin: 0 10px;
-  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chart-content {
+  height: 300px;
+  background-color: #333;
+  border-radius: 8px;
 }
 
 .products {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.product-item {
   background-color: #4a4a4a;
   padding: 20px;
   border-radius: 8px;
-  margin: 10px 0;
-  width: 100%;
-  max-width: 500px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
+.product-item {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.add-product {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
 .finances {
+  background-color: #4a4a4a;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.finance-summary {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 20px;
 }
 
 .finance-item {
-  background-color: #4a4a4a;
+  background-color: #333;
   padding: 20px;
   border-radius: 8px;
   flex: 1;
@@ -127,9 +133,8 @@ section {
 }
 
 .withdraw {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .withdraw-form {
@@ -163,5 +168,10 @@ section {
   background-color: #4a4a4a;
   padding: 20px;
   border-radius: 8px;
-  text-align: center;
+}
+
+.extract-content {
+  height: 150px;
+  background-color: #333;
+  border-radius: 8px;
 }
