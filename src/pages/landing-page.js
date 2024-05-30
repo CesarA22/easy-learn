@@ -54,7 +54,7 @@ export const Header = () => {
         <div className='lp__header__col--1'>
           <h1 className='lp__title'>Simples,confiável, lucrativa,para pessoas ambiciosas</h1>
           <p>Crie produtos e serviços digitais como e-books, cursos online,mentorias — e venda com a menor taxa do mercado.</p>
-          <button className='btn--primary'>Cadastre-se agora</button>
+          <Link to="create-account" className='btn--primary'>Cadastre-se agora</Link>
         </div>
         <div className='lp__header__col--2'>
           <img src={headerImg}  alt="header-img" />

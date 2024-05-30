@@ -1,4 +1,4 @@
-/* src/styles/UserScreen.css */
+/* src/styles/user-screen.css */
 body {
   margin: 0;
   padding: 0;
@@ -49,6 +49,7 @@ body {
 .main-content {
   flex: 1;
   padding: 20px;
+  background-color: #2b2b2b;
 }
 
 header h1 {
@@ -56,14 +57,14 @@ header h1 {
   margin-bottom: 20px;
 }
 
-.profile {
+.profile, .business {
   background-color: #1e1e1e;
-  padding: 20px;
+  padding: 40px; /* Aumentei o padding */
   border-radius: 8px;
   margin-bottom: 20px;
 }
 
-.profile-content {
+.profile-content, .business-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,14 +76,14 @@ header h1 {
 }
 
 .picture {
-  width: 80px;
-  height: 80px;
+  width: 100px; /* Aumentei o tamanho da imagem */
+  height: 100px; /* Aumentei o tamanho da imagem */
   background-color: #ccc;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 36px; /* Aumentei o tamanho da fonte */
   color: #333;
   margin-right: 10px;
 }
@@ -90,8 +91,8 @@ header h1 {
 .edit-icon {
   background-color: #007bff;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 32px; /* Aumentei o tamanho do ícone de edição */
+  height: 32px; /* Aumentei o tamanho do ícone de edição */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,7 +106,25 @@ header h1 {
 }
 
 .profile-details p {
-  margin: 5px 0;
+  margin: 10px 0; /* Aumentei o espaçamento entre os parágrafos */
+}
+
+.verified {
+  color: #00ff00;
+}
+
+.edit-button, .new-business-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.edit-button:hover, .new-business-button:hover {
+  background-color: #0056b3;
 }
 
 .logout-button {
