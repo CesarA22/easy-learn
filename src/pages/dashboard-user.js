@@ -23,10 +23,11 @@ function DashboardUser() {
           <p onClick={() => navigate('/user-screen')}>Pimegonho Bizo...</p>
         </div>
       </aside>
-      <main className="main-content">
+      <main className="dashboard__main-content">
         <header>
           <h1>Boas-vindas, Pimegonho</h1>
         </header>
+        
         <section className="summary">
           <div className="summary-item">
             <p>Vendas hoje</p>
@@ -47,12 +48,6 @@ function DashboardUser() {
         <section className="chart">
           <h2>Gráfico de Faturamento</h2>
           <div className="chart-content"></div>
-        </section>
-        <section className="products">
-          <h2>Produtos</h2>
-          <div className="product-item">Exemplo-1</div>
-          <div className="product-item">Exemplo-2</div>
-          <button className="add-product">+</button>
         </section>
         <section className="finances">
           <h2>Finanças</h2>
@@ -86,6 +81,7 @@ function DashboardUser() {
             <div className="extract-content"></div>
           </div>
         </section>
+
       </main>
     </div>
   );

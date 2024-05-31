@@ -87,6 +87,12 @@ body .lp {
   height: 30vw;
 }
 
+.lp__sell__box__col {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 .lp__header__col--1 {
   display: flex;
   flex-direction: column;

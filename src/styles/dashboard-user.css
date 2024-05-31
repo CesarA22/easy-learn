@@ -46,10 +46,12 @@ body {
   cursor: pointer;
 }
 
-.main-content {
-  flex: 1;
+.dashboard__main-content {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   overflow-y: auto;
+  width: 100%;
 }
 
 header h1 {
@@ -64,7 +66,7 @@ header h1 {
 }
 
 .summary-item {
-  background-color: #4a4a4a;
+  background-color: #1e1e1e;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
@@ -73,7 +75,7 @@ header h1 {
 }
 
 .chart {
-  background-color: #4a4a4a;
+  background-color: #1e1e1e;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -85,33 +87,8 @@ header h1 {
   border-radius: 8px;
 }
 
-.products {
-  background-color: #4a4a4a;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.product-item {
-  background-color: #333;
-  padding: 20px;
-  border-radius: 8px;
-  margin: 10px 0;
-}
-
-.add-product {
-  background-color: #007bff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 24px;
-  cursor: pointer;
-}
-
 .finances {
-  background-color: #4a4a4a;
+  background-color: #1e1e1e;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -165,7 +142,7 @@ header h1 {
 }
 
 .extract {
-  background-color: #4a4a4a;
+  background-color: #333;
   padding: 20px;
   border-radius: 8px;
 }
