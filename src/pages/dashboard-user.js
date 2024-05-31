@@ -1,15 +1,17 @@
 // src/components/DashboardUser.js
-import React from 'react';
+import React, {useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard-user.css';
+import { AuthContext } from '../context/AuthContext';
 
 function DashboardUser() {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
-        <div className="logo" onClick={() => navigate('/login')}>Easy Learn</div>
+        <div className="logo" onClick={() => navigate('/')}>Easy Learn</div>
         <nav className="menu">
           <ul>
             <li onClick={() => navigate('/dashboard-user')}>Dashboard</li>
@@ -20,12 +22,12 @@ function DashboardUser() {
         </nav>
         <div className="settings">
           <p>Configurações</p>
-          <p onClick={() => navigate('/user-screen')}>Pimegonho Bizo...</p>
+          <p onClick={() => navigate('/user-screen')}>{user ? user.name : 'Nome do perfil'}</p>
         </div>
       </aside>
       <main className="dashboard__main-content">
         <header>
-          <h1>Boas-vindas, Pimegonho</h1>
+          <h1>Boas-vindas, {user ? user.name : 'Nome do perfil'}</h1>
         </header>
         
         <section className="summary">
