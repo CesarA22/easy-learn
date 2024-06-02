@@ -1,7 +1,7 @@
 // src/components/Products.js
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/products.css';
+import '../styles/products.css'; 
 import { AuthContext } from '../context/AuthContext';
 
 function Products() {
@@ -29,7 +29,7 @@ function Products() {
   }, [user]);
 
   return (
-    <div className="products-container">
+    <div className="user-screen-container">
       <aside className="sidebar">
         <div className="logo" onClick={() => navigate('/login')}>Easy Learn</div>
         <nav className="menu">
@@ -50,28 +50,30 @@ function Products() {
           <h1>Bem-vindo, {user ? user.name.split(' ')[0] : 'Usuário'}</h1>
           <h2>Aqui estão os seus produtos</h2>
         </header>
-        <section className="actions">
-          <button onClick={() => navigate('/create-product')} className="add-product-button">Adicionar Produto</button>
+        <section className="profile-actions">
+          <button onClick={() => navigate('/create-product')} className="edit-button">Adicionar Produto</button>
         </section>
-        {hasProducts ? (
-          <section className="product-list">
-            {products.map((product) => (
-              <div key={product._id} className="product-item">
-                <div className="product-image">
-                  <img src={`${process.env.REACT_APP_BACKEND_URL}/public/files/${product.images[0]?.url}`} alt="Product" />
+        <section className="products-section">
+          {hasProducts ? (
+            <div className="product-grid">
+              {products.map((product) => (
+                <div key={product._id} className="product-card">
+                  <div className="product-image">
+                    <img src={`${process.env.REACT_APP_BACKEND_URL}/public/files/${product.images[0]?.url}`} alt="Product" />
+                  </div>
+                  <div className="product-info">
+                    <h3>{product.title}</h3>
+                    <p>{product.description}</p>
+                  </div>
                 </div>
-                <div className="product-details">
-                  <h3>{product.title}</h3>
-                  <p>{product.description}</p>
-                </div>
-              </div>
-            ))}
-          </section>
-        ) : (
-          <div className="no-products">
-            <p>Você ainda não tem nenhum produto cadastrado.</p>
-          </div>
-        )}
+              ))}
+            </div>
+          ) : (
+            <div className="no-products">
+              <p>Você ainda não tem nenhum produto cadastrado.</p>
+            </div>
+          )}
+        </section>
       </main>
     </div>
   );

@@ -16,13 +16,14 @@ const CreateProduct = () => {
         </nav>
         <div className="settings">
           <p>Configurações</p>
-          <p>Carlos Eduardo</p>
+          <p>Pimegonho</p>
         </div>
       </aside>
       <main className="create-product__main-content">
         <header>
           <h1>Cadastrar Produto</h1>
         </header>
+        
         <div class="product-form__wrapper">
           <div className="product-form dashboard__main-content__col--1">
             <div className="product-details">

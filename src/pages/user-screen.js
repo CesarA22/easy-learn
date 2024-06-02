@@ -34,6 +34,7 @@ function UserScreen() {
         <header>
           <h1>Configurações</h1>
         </header>
+        
         <section className="profile">
           <h2>Perfil</h2>
           <div className="profile-content">
@@ -50,7 +51,10 @@ function UserScreen() {
               <p><strong>Verificação:</strong> <span className="verified">Dados Verificados</span></p>
             </div>
           </div>
-          <button className="edit-button">Editar</button>
+          <div className="profile-actions">
+            <button className="edit-button">Editar</button>
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
+          </div>
         </section>
         <section className="business">
           <h2>Negócios</h2>
@@ -62,7 +66,6 @@ function UserScreen() {
             <button className="new-business-button">+ Novo Negócio</button>
           </div>
         </section>
-        <button className="logout-button" onClick={handleLogout}>Logout</button>
       </main>
     </div>
   );
