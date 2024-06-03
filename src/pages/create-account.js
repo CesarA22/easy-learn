@@ -1,33 +1,23 @@
 // src/components/CreateAccount.js
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/create-account.css';
 import { AuthContext } from '../context/AuthContext';
+import '../styles/create-account.css';
 
 function CreateAccount() {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [fone, setFone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  const validatePassword = () => {
-    const conditions = [
-      { text: 'Pelo menos 8 caracteres', valid: password.length >= 8 },
-      { text: 'Pelo menos 1 caractere especial', valid: /[!@#$%^&*]/.test(password) },
-      { text: 'Pelo menos 1 número', valid: /\d/.test(password) },
-      { text: 'Pelo menos 1 letra minúscula', valid: /[a-z]/.test(password) },
-      { text: 'Pelo menos 1 letra maiúscula', valid: /[A-Z]/.test(password) },
-      { text: 'As senhas digitadas conferem', valid: password === confirmPassword }
-    ];
-    return conditions;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const conditions = validatePassword();
     const valid = conditions.every(condition => condition.valid);
 
@@ -40,20 +30,33 @@ function CreateAccount() {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, confirmPassword })
+        body: JSON.stringify({ name, email, password, confirmPassword, cpf, fone })
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setUser({ name, email });  // Salvar as informações do usuário no contexto
-        navigate('/user-screen');  // Redirecionar para a tela do usuário
+        setUser({ name, email });
+        navigate('/user-screen');
       } else {
         setError(data.error);
       }
     } catch (err) {
-      setError('Erro ao registrar usuário.');
+      setError('Erro ao criar conta.');
     }
+  };
+
+  const validatePassword = () => {
+    const conditions = [
+      { text: 'Pelo menos 8 caracteres', valid: password.length >= 8 },
+      { text: 'Pelo menos 1 caractere especial', valid: /[!@#$%^&*]/.test(password) },
+      { text: 'Pelo menos 1 número', valid: /\d/.test(password) },
+      { text: 'Pelo menos 1 letra minúscula', valid: /[a-z]/.test(password) },
+      { text: 'Pelo menos 1 letra maiúscula', valid: /[A-Z]/.test(password) },
+      { text: 'As senhas digitadas conferem', valid: password === confirmPassword }
+    ];
+
+    return conditions;
   };
 
   return (
@@ -61,10 +64,31 @@ function CreateAccount() {
       <div className="create-account-box">
         <h1>Criar conta</h1>
         {error && <p className="error">{error}</p>}
-        <form onSubmit={handleSubmit} className='create-account__form'>
-          <input type="text" placeholder="Seu nome" value={name} onChange={(e) => setName(e.target.value)} />
-          <input type="email" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="tel" placeholder="Seu número (com DDD)" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Seu nome"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Seu e-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Seu CPF"
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Seu telefone"
+            value={fone}
+            onChange={(e) => setFone(e.target.value)}
+          />
           <input
             type="password"
             placeholder="Sua senha"

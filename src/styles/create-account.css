@@ -1,27 +1,27 @@
-body .create-account-container {
+/* src/styles/CreateAccount.css */
+body {
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
   background-color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120vh;
+  color: #fff;
 }
 
 .create-account-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: auto;
+  height: 100vh;
 }
 
 .create-account-box {
   background-color: #1e1e1e;
-  padding: 10px 40px;
+  padding: 40px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
-  width: 450px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .create-account-box h1 {
@@ -29,13 +29,9 @@ body .create-account-container {
   margin-bottom: 20px;
 }
 
-.create-account__form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
 .create-account-box input {
+  display: block;
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -58,20 +54,23 @@ body .create-account-container {
 
 .password-conditions {
   text-align: left;
-  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .password-conditions p {
-  color: white;
-  font-size: 14px;
+  margin: 5px 0;
 }
 
 .password-conditions .valid {
-  color: #4caf50;
+  color: #28a745;
 }
 
 .password-conditions .invalid {
-  color: #f44336;
+  color: #dc3545;
+}
+
+.error {
+  color: red;
 }
 
 .login-link {

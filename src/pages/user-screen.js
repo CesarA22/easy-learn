@@ -1,5 +1,4 @@
-// src/components/UserScreen.js
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/user-screen.css';
 import { AuthContext } from '../context/AuthContext';
@@ -8,9 +7,35 @@ function UserScreen() {
   const navigate = useNavigate();
   const { user, setUser } = useContext(AuthContext);
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await fetch('http://localhost:3000/user/me', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const data = await response.json();
+          if (response.ok) {
+            setUser(data.user);
+          } else {
+            console.error('Failed to fetch user data:', data.error);
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [setUser]);
+
   const handleLogout = () => {
-    setUser(null); // Limpar o contexto de autenticação
-    navigate('/login'); // Redirecionar para a página de login
+    localStorage.removeItem('token');
+    setUser(null);
+    navigate('/login');
   };
 
   return (
@@ -34,7 +59,6 @@ function UserScreen() {
         <header>
           <h1>Configurações</h1>
         </header>
-        
         <section className="profile">
           <h2>Perfil</h2>
           <div className="profile-content">
@@ -44,17 +68,14 @@ function UserScreen() {
             </div>
             <div className="profile-details">
               <p><strong>Nome:</strong> {user ? user.name : 'Nome do perfil'}</p>
-              <p><strong>Documento:</strong> 000.000.000-00</p>
-              <p><strong>Telefone:</strong> +55 11 00000-0000</p>
+              <p><strong>Documento:</strong> 345. 123.123-40 </p>
+              <p><strong>Telefone:</strong> (19)988776655 </p>
               <p><strong>Email:</strong> {user ? user.email : 'email@dominio.com'}</p>
               <p><strong>Idioma:</strong> Português</p>
               <p><strong>Verificação:</strong> <span className="verified">Dados Verificados</span></p>
             </div>
           </div>
-          <div className="profile-actions">
-            <button className="edit-button">Editar</button>
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
-          </div>
+          <button className="edit-button">Editar</button>
         </section>
         <section className="business">
           <h2>Negócios</h2>
@@ -66,6 +87,7 @@ function UserScreen() {
             <button className="new-business-button">+ Novo Negócio</button>
           </div>
         </section>
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
       </main>
     </div>
   );
