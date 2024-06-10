@@ -1,7 +1,7 @@
 // src/components/Products.js
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/products.css'; 
+import '../styles/products.css';
 import { AuthContext } from '../context/AuthContext';
 
 function Products() {

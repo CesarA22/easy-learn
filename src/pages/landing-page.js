@@ -149,8 +149,8 @@ export const Sell = () => {
                   title={"Fotografia"}
                   icon={<MdPhotoCamera size={20} />}
                 />
-                <SellItem 
-                  title={"Aulas"} 
+                <SellItem
+                  title={"Aulas"}
                   icon={<SiGoogleclassroom size={20} />} />
                 <SellItem
                   title={"E-Books"}
@@ -190,8 +190,8 @@ export const Sell = () => {
                   title={"Freelance"}
                   icon={<SiFreelancer size={20} />}
                 />
-                <SellItem 
-                  title={"Vídeos"} 
+                <SellItem
+                  title={"Vídeos"}
                   icon={<BiSolidVideos size={20} />} />
               </div>
             </div>

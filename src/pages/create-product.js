@@ -71,7 +71,7 @@ const CreateProduct = () => {
         <header>
           <h1>Cadastrar Produto</h1>
         </header>
-        
+
         <form onSubmit={handleSubmit} className="product-form__wrapper">
           <div className="product-form dashboard__main-content__col--1">
             <div className="product-details">

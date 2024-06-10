@@ -14,13 +14,14 @@ body .lp {
   display: flex;
   align-items: center;
 }
+
 .lp__logo img {
   transform: scale(55%);
   margin-right: -5px;
 }
 
 .lp__navbar {
-  background:#1C1C1C;
+  background: #1C1C1C;
   padding: 10px;
 }
 
@@ -60,7 +61,7 @@ body .lp {
 }
 
 
-.btn--primary  {
+.btn--primary {
   color: white;
   background-color: #1E90FF;
   border: none;
@@ -76,7 +77,7 @@ body .lp {
 
 /* header */
 .lp__header {
-  background:#1C1C1C;
+  background: #1C1C1C;
   padding-bottom: 10vh;
 }
 
@@ -112,31 +113,31 @@ body .lp {
 }
 
 /* guides */
- .lp__guides {
+.lp__guides {
   background: #363636;
   padding-top: 50px;
   padding-bottom: 50px;
- }
+}
 
- .lp__guides__container {
+.lp__guides__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
- }
+}
 
- .lp__guides__col--1 {
+.lp__guides__col--1 {
   width: 35%;
- }
+}
 
- .lp__guides__col--2 {
+.lp__guides__col--2 {
   width: 60%;
- }
+}
 
- .lp__guides__col--2 h2 {
+.lp__guides__col--2 h2 {
   margin-bottom: 50px;
- }
+}
 
- .lp__guides__box {
+.lp__guides__box {
   background: #1C1C1C;
   display: flex;
   flex-direction: column;
@@ -144,13 +145,13 @@ body .lp {
   font-size: 18px;
   padding: 30px 25px;
   border-radius: 20px;
- }
+}
 
- .lp__guides__box__item {
+.lp__guides__box__item {
   display: flex;
   gap: 5px;
 
- }
+}
 
 .lp__sell {
   padding-top: 50px;
@@ -219,10 +220,11 @@ body .lp {
 }
 
 .lp__contact__col--1 {
-  width: 40%; 
+  width: 40%;
 }
+
 .lp__contact__col--2 {
-  width: 50%; 
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: end;

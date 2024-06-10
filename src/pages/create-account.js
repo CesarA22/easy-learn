@@ -10,7 +10,7 @@ function CreateAccount() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
-  const [fone, setFone] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -30,7 +30,7 @@ function CreateAccount() {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, confirmPassword, cpf, fone })
+        body: JSON.stringify({ name, email, password, confirmPassword, cpf, phone })
       });
 
       const data = await response.json();
@@ -86,8 +86,8 @@ function CreateAccount() {
           <input
             type="text"
             placeholder="Seu telefone"
-            value={fone}
-            onChange={(e) => setFone(e.target.value)}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           />
           <input
             type="password"

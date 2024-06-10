@@ -1,5 +1,5 @@
 // src/components/DashboardUser.js
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard-user.css';
 import { AuthContext } from '../context/AuthContext';
@@ -29,7 +29,7 @@ function DashboardUser() {
         <header>
           <h1>Boas-vindas, {user ? user.name : 'Nome do perfil'}</h1>
         </header>
-        
+
         <section className="summary">
           <div className="summary-item">
             <p>Vendas hoje</p>
