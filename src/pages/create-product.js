@@ -138,7 +138,7 @@ const CreateProduct = () => {
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
           </div>
-          <button type="submit" className="submit-button">Cadastrar Produto</button>
+          <button type="submit" className="edit-button">Cadastrar Produto</button>
         </form>
       </main>
     </div>

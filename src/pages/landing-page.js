@@ -1,5 +1,4 @@
 import React from "react";
-import headerImg from "../assets/header-img.png";
 import logo from "../assets/logo.png";
 import sellImg from "../assets/sell.png";
 import businessImg from "../assets/business.png";
@@ -81,9 +80,6 @@ export const Header = () => {
           <Link to="create-account" className="btn--primary">
             Cadastre-se agora
           </Link>
-        </div>
-        <div className="lp__header__col--2">
-          <img src={headerImg} alt="header-img" />
         </div>
       </div>
     </header>
