@@ -1,4 +1,4 @@
-// src/components/Products.js
+// products.js do front-end
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/products.css';
@@ -27,6 +27,10 @@ function Products() {
 
     fetchUserProducts();
   }, [user]);
+
+  const handleProductClick = (id) => {
+    navigate(`/products/${id}`);
+  };
 
   return (
     <div className="user-screen-container">
@@ -57,7 +61,7 @@ function Products() {
           {hasProducts ? (
             <div className="product-grid">
               {products.map((product) => (
-                <div key={product._id} className="product-card">
+                <div key={product._id} className="product-card"onClick={() => handleProductClick(product._id)}>
                   <div className="product-image">
                     <img src={`${process.env.REACT_APP_BACKEND_URL}/public/files/${product.images[0]?.url}`} alt="Product" />
                   </div>
