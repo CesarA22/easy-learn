@@ -19,7 +19,11 @@ function ProductDetails() {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/products/item/${id}`);
+        const response = await fetch(`http://localhost:3000/products/item/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
         const data = await response.json();
         if (response.ok) {
           setProduct(data);
@@ -49,6 +53,7 @@ function ProductDetails() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify({
           title,
