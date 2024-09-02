@@ -1,10 +1,10 @@
 // src/components/LoginComprador.js
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/login-comprador.css';
+import '../styles_comprador/login-comprador.css';
 import { AuthContext } from '../context/AuthContext';
 
-function Login() {
+function LoginComprador() {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
   const [email, setEmail] = useState('');
