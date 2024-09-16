@@ -1,4 +1,4 @@
-// src/components/DashboardUser.js
+// src/components/ProdutosComprados.js
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/produtos-comprados.css';

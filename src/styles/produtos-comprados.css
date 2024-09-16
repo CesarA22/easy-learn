@@ -1,4 +1,4 @@
-/* src/styles/DashboardUser.css */
+/* src/styles/ProdutosComprados.css */
 body {
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@ body {
     color: #fff;
   }
   
-  .dashboard-container {
+  .produtos-comprados-container {
     display: flex;
     height: 100vh;
   }
@@ -74,57 +74,16 @@ body {
     margin: 0 10px;
   }
   
-  .chart {
+  .product {
     background-color: #1e1e1e;
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
   }
   
-  .chart-content {
+  .product-content {
     height: 300px;
     background-color: #333;
     border-radius: 8px;
-  }
-  
-  .finances {
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
-  
-  .finance-summary {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-  
-  .finance-item {
-    background-color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    flex: 1;
-    margin: 0 10px;
-    text-align: center;
-  }
-  
-  .withdraw {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .withdraw-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  .withdraw-form input {
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    margin-right: 10px;
   }
   
