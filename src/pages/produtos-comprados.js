@@ -8,7 +8,7 @@ function ProdutosComprados() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
-  const [products, setProducts] = useState([
+  const [products, ] = ([
     { name: "prod-1", description: "Descrição do produto" },
     { name: "prod-2", description: "Descrição do produto" },
     { name: "prod-3", description: "Descrição do produto" },
