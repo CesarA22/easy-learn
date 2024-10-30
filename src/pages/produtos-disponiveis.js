@@ -1,26 +1,46 @@
-// src/components/ProdutosDisponiveis.js
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/produtos-disponiveis.css";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext.js";
 
 function ProdutosDisponiveis() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const [products, setProducts] = useState([]);
 
-  const [products, setProducts] = useState([
-    { name: "prod-1", description: "Descrição do produto" },
-    { name: "prod-2", description: "Descrição do produto" },
-    { name: "prod-3", description: "Descrição do produto" },
-    { name: "prod-4", description: "Descrição do produto" },
-    { name: "prod-5", description: "Descrição do produto" },
-  ]);
+  useEffect(() => {
 
-  // useEffect(() => {
-  // TODO: Fazer uma chamada para API
-  // e setar os produtos com setProducts
-  // setProducts()
-  // }, [])
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.error("No token found");
+        return;
+      }
+    console.log(token)
+    if (!user) return; // Ensure user is authenticated before making the request
+
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/products/item", {
+            method: "GET",
+          headers: {
+            Authorization: `Bearer ${user.token}`, // Assuming the user object has a token property
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        console.log("Fetched products:", data); // Log the fetched data
+        setProducts(data); // Assuming the data is an array of products
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [user]);
 
   return (
     <div className="produtos-disponiveis-container">
@@ -31,10 +51,10 @@ function ProdutosDisponiveis() {
         <nav className="menu">
           <ul>
             <li onClick={() => navigate("/produtos-disponiveis")}>
-              Produtos disponiveis
+              Produtos disponíveis
             </li>
-            <li onClick={() => navigate("/products-comprados")}>
-              Produtos Compados
+            <li onClick={() => navigate("/produtos-comprados")}>
+              Produtos Comprados
             </li>
           </ul>
         </nav>
@@ -64,21 +84,25 @@ function ProdutosDisponiveis() {
           </div>
         </section>
         <div className="products__container">
-          {products.map((product) => (
-            <section className="product">
-              <h2>Produto exemplo 1</h2>
-              <div className="product-content">
-                <div className="product-item" key={product.name}>
-                  <div className="product-image" />
-                  <div>
-                    <p>{product.name}</p>
-                    <p>{product.description}</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-          ))}
-        </div>
+            {products.length === 0 ? (
+                <p>Nenhum produto disponível</p> // Show a message if there are no products
+            ) : (
+                products.map((product) => (
+                <section className="product" key={product.id}>
+                    <h2>{product.name}</h2>
+                    <div className="product-content">
+                    <div className="product-item">
+                        <div className="product-image" />
+                        <div>
+                        <p>{product.name}</p>
+                        <p>{product.description}</p>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+                ))
+            )}
+            </div>
       </main>
     </div>
   );
