@@ -1,46 +1,44 @@
-/* src/styles/LoginComprador.css */
-body .login-comprador-container {
+/* src/stylesComprador/CreateAccountComprador.css */
+body {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
     background-color: #333;
     color: #fff;
   }
   
-  .login-comprador-container {
+  .create-account-comprador-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
   
-  .login-comprador-box {
+  .create-account-comprador-box {
     background-color: #1e1e1e;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
   }
   
-  .login-comprador-box h1 {
+  .create-account-comprador-box h1 {
     color: white;
     margin-bottom: 20px;
   }
   
-  .login-comprador__form {
+  .create-account-comprador-box input {
+    display: block;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .login-comprador-box input {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
-  .login-comprador-box button {
+  .create-account-comprador-box button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -50,32 +48,45 @@ body .login-comprador-container {
     cursor: pointer;
   }
   
-  .login-comprador-box button:hover {
+  .create-account-comprador-box button:hover {
     background-color: #0056b3;
+  }
+  
+  .password-conditions {
+    text-align: left;
+    margin-top: 10px;
+  }
+  
+  .password-conditions p {
+    margin: 5px 0;
+  }
+  
+  .password-conditions .valid {
+    color: #28a745;
+  }
+  
+  .password-conditions .invalid {
+    color: #dc3545;
   }
   
   .error {
     color: red;
   }
   
-  .login-comprador__btn {
-    width: 100%;
-  }
-  
-  .register-link {
+  .login-comprador-link {
     margin-top: 20px;
   }
   
-  .register-link p {
+  .login-comprador-link p {
     color: white;
   }
   
-  .register-link a {
+  .login-comprador-link a {
     color: #007bff;
     text-decoration: none;
   }
   
-  .register-link a:hover {
+  .login-comprador-link a:hover {
     text-decoration: underline;
   }
   

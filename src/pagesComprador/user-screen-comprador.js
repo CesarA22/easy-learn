@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/user-screen.css';
+import '../stylesComprador/user-screen-comprador.css';
 import { AuthContext } from '../context/AuthContext';
 
 function UserScreenComprador() {

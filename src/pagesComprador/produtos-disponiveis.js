@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/produtos-disponiveis.css";
+import "../stylesComprador/produtos-disponiveis.css";
 import { AuthContext } from "../context/AuthContext.js";
 
 function ProdutosDisponiveis() {

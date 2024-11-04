@@ -10,12 +10,12 @@ import UserScreen from "./pages/user-screen.js";
 import CreateProduct from "./pages/create-product.js";
 import ProductDetails from './pages/product-details.js';
 
-import CreateAccountComprador from "./pages/create-account-comprador.js";
-import ProdutosDisponiveis from "./pages/produtos-disponiveis.js";
-import ProdutosComprados from "./pages/produtos-comprados.js";
-import LoginComprador from "./pages/login-comprador.js";
-import ConsumirProduto from "./pages/consumir-produto.js";
-import UserScreenComprador from "./pages/user-screen-comprador.js";
+import CreateAccountComprador from "./pagesComprador/create-account-comprador.js";
+import ProdutosDisponiveis from "./pagesComprador/produtos-disponiveis.js";
+import ProdutosComprados from "./pagesComprador/produtos-comprados.js";
+import LoginComprador from "./pagesComprador/login-comprador.js";
+import ConsumirProduto from "./pagesComprador/consumir-produto.js";
+import UserScreenComprador from "./pagesComprador/user-screen-comprador.js";
 
 import "./styles/landing-page.css";
 import "./styles/create-account.css";
@@ -27,12 +27,12 @@ import "./index.css";
 import "./styles/create-product.css";
 import "./styles/product-details.css";
 
-import "./styles/create-account-comprador.css";
-import "./styles/produtos-disponiveis.css";
-import "./styles/login-comprador.css";
-import "./styles/consumir-produto.css";
-import "./styles/produtos-comprados.css";
-import "./styles/user-screen-comprador.css";
+import "./stylesComprador/create-account-comprador.css";
+import "./stylesComprador/produtos-disponiveis.css";
+import "./stylesComprador/login-comprador.css";
+import "./stylesComprador/consumir-produto.css";
+import "./stylesComprador/produtos-comprados.css";
+import "./stylesComprador/user-screen-comprador.css";
 
 
 function App() {

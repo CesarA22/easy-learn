@@ -1,44 +1,46 @@
-/* src/styles/CreateAccountComprador.css */
-body {
+/* src/stylesComprador/LoginComprador.css */
+body .login-comprador-container {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
     background-color: #333;
     color: #fff;
   }
   
-  .create-account-comprador-container {
+  .login-comprador-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
   
-  .create-account-comprador-box {
+  .login-comprador-box {
     background-color: #1e1e1e;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 100%;
-    max-width: 400px;
+    width: 400px;
   }
   
-  .create-account-comprador-box h1 {
+  .login-comprador-box h1 {
     color: white;
     margin-bottom: 20px;
   }
   
-  .create-account-comprador-box input {
-    display: block;
+  .login-comprador__form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-comprador-box input {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
-  .create-account-comprador-box button {
+  .login-comprador-box button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -48,45 +50,32 @@ body {
     cursor: pointer;
   }
   
-  .create-account-comprador-box button:hover {
+  .login-comprador-box button:hover {
     background-color: #0056b3;
-  }
-  
-  .password-conditions {
-    text-align: left;
-    margin-top: 10px;
-  }
-  
-  .password-conditions p {
-    margin: 5px 0;
-  }
-  
-  .password-conditions .valid {
-    color: #28a745;
-  }
-  
-  .password-conditions .invalid {
-    color: #dc3545;
   }
   
   .error {
     color: red;
   }
   
-  .login-comprador-link {
+  .login-comprador__btn {
+    width: 100%;
+  }
+  
+  .register-link {
     margin-top: 20px;
   }
   
-  .login-comprador-link p {
+  .register-link p {
     color: white;
   }
   
-  .login-comprador-link a {
+  .register-link a {
     color: #007bff;
     text-decoration: none;
   }
   
-  .login-comprador-link a:hover {
+  .register-link a:hover {
     text-decoration: underline;
   }
   

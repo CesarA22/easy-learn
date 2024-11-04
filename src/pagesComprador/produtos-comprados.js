@@ -1,7 +1,7 @@
 // src/components/ProdutosComprados.js
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/produtos-comprados.css';
+import '../stylesComprador/produtos-comprados.css';
 import { AuthContext } from '../context/AuthContext';
 
 function ProdutosComprados() {
