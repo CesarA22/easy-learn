@@ -7,6 +7,9 @@ import ConsumeProduct from './pages-buyer/consume-product.js';
 import CreateAccountBuyer from './pages-buyer/create-account-buyer.js';
 import LoginBuyer from './pages-buyer/login-buyer.js';
 import UserScreenBuyer from './pages-buyer/user-screen-buyer.js';
+import BuyProduct from './pages-buyer/buy-product.js';
+import PurchaseConfirmation from './pages-buyer/purchase-confirmation.js';
+import VerifiedPayment from './pages-buyer/verified-payment.js';
 
 import CreateAccountSeller from './pages-seller/create-account-seller.js';
 import CreateProduct from './pages-seller/create-product.js';
@@ -25,6 +28,9 @@ import './styles-buyer/consume-product.css';
 import './styles-buyer/create-account-buyer.css';
 import './styles-buyer/login-buyer.css';
 import './styles-buyer/user-screen-buyer.css';
+import './styles-buyer/buy-product.css';
+import './styles-buyer/purchase-confirmation.css';
+import './styles-buyer/verified-payment.css';
 
 import './styles-seller/create-account-seller.css';
 import './styles-seller/create-product.css';
@@ -47,6 +53,9 @@ function App() {
                 <Route path="/create-account-buyer" element={<CreateAccountBuyer />} />
                 <Route path="/login-buyer" element={<LoginBuyer />} />
                 <Route path="/user-screen-buyer" element={<UserScreenBuyer />} />
+                <Route path="/buy-product" element={<BuyProduct />} />
+                <Route path="/purchase-confirmation" element={<PurchaseConfirmation />} />
+                <Route path="/verified-payment" element={<VerifiedPayment />} />
 
                 <Route path="/create-account-seller" element={<CreateAccountSeller />} />
                 <Route path="/create-product" element={<CreateProduct />} />
