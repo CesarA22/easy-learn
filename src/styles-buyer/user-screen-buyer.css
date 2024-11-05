@@ -1,87 +1,86 @@
-/* src/stylesComprador/user-screen-comprador.css */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #333;
     color: #fff;
-  }
-  
-  .user-screen-container {
+}
+
+.user-screen-container {
     display: flex;
     height: 100vh;
-  }
-  
-  .sidebar {
+}
+
+.sidebar {
     width: 250px;
     background-color: #1e1e1e;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  
-  .logo {
+}
+
+.logo {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
     cursor: pointer;
-  }
-  
-  .menu ul {
+}
+
+.menu ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .menu ul li {
+}
+
+.menu ul li {
     margin: 10px 0;
     cursor: pointer;
-  }
-  
-  .settings {
+}
+
+.settings {
     margin-top: 20px;
-  }
-  
-  .settings p {
+}
+
+.settings p {
     cursor: pointer;
-  }
-  
-  .main-content {
+}
+
+.main-content {
     flex: 1;
     padding: 20px;
     background-color: #2b2b2b;
     display: flex;
     flex-direction: column;
-  }
-  
-  header h1 {
+}
+
+header h1 {
     font-size: 28px;
     margin-bottom: 20px;
-  }
-  
-  .profile,
-  .business {
+}
+
+.profile,
+.business {
     background-color: #1e1e1e;
     padding: 40px;
     border-radius: 8px;
     margin-bottom: 20px;
     width: calc(100% - 80px);
-  }
-  
-  .profile-content,
-  .business-content {
+}
+
+.profile-content,
+.business-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-  
-  .profile-picture {
+}
+
+.profile-picture {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-  }
-  
-  .picture {
+}
+
+.picture {
     width: 100px;
     height: 100px;
     background-color: #ccc;
@@ -91,9 +90,9 @@ body {
     align-items: center;
     font-size: 36px;
     color: #333;
-  }
-  
-  .edit-icon {
+}
+
+.edit-icon {
     background-color: #007bff;
     border-radius: 50%;
     width: 32px;
@@ -103,24 +102,24 @@ body {
     align-items: center;
     color: #fff;
     cursor: pointer;
-  }
-  
-  .profile-details {
+}
+
+.profile-details {
     flex: 1;
     margin-bottom: 20px;
-  }
-  
-  .profile-details p {
+}
+
+.profile-details p {
     margin: 10px 0;
-  }
-  
-  .verified {
+}
+
+.verified {
     color: #00ff00;
-  }
-  
-  .edit-button,
-  .new-business-button,
-  .logout-button {
+}
+
+.edit-button,
+.new-business-button,
+.logout-button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -128,20 +127,19 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     margin-top: 20px;
-  }
-  
-  .edit-button:hover,
-  .new-business-button:hover,
-  .logout-button:hover {
+}
+
+.edit-button:hover,
+.new-business-button:hover,
+.logout-button:hover {
     background-color: #0056b3;
-  }
-  
-  .logout-button {
+}
+
+.logout-button {
     background-color: #ff4d4d;
     margin-left: 20px;
-  }
-  
-  .logout-button:hover {
+}
+
+.logout-button:hover {
     background-color: #cc0000;
-  }
-  
+}

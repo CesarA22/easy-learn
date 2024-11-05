@@ -1,46 +1,45 @@
-/* src/stylesComprador/LoginComprador.css */
 body .login-comprador-container {
     margin: 0;
     padding: 0;
     background-color: #333;
     color: #fff;
-  }
-  
-  .login-comprador-container {
+}
+
+.login-comprador-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
-  
-  .login-comprador-box {
+}
+
+.login-comprador-box {
     background-color: #1e1e1e;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 400px;
-  }
-  
-  .login-comprador-box h1 {
+}
+
+.login-comprador-box h1 {
     color: white;
     margin-bottom: 20px;
-  }
-  
-  .login-comprador__form {
+}
+
+.login-comprador__form {
     width: 100%;
     display: flex;
     flex-direction: column;
-  }
-  
-  .login-comprador-box input {
+}
+
+.login-comprador-box input {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .login-comprador-box button {
+}
+
+.login-comprador-box button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -48,34 +47,33 @@ body .login-comprador-container {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .login-comprador-box button:hover {
+}
+
+.login-comprador-box button:hover {
     background-color: #0056b3;
-  }
-  
-  .error {
+}
+
+.error {
     color: red;
-  }
-  
-  .login-comprador__btn {
+}
+
+.login-comprador__btn {
     width: 100%;
-  }
-  
-  .register-link {
+}
+
+.register-link {
     margin-top: 20px;
-  }
-  
-  .register-link p {
+}
+
+.register-link p {
     color: white;
-  }
-  
-  .register-link a {
+}
+
+.register-link a {
     color: #007bff;
     text-decoration: none;
-  }
-  
-  .register-link a:hover {
+}
+
+.register-link a:hover {
     text-decoration: underline;
-  }
-  
+}
