@@ -15,7 +15,9 @@ export const AuthProvider = ({ children }) => {
                             Authorization: `Bearer ${token}`,
                         },
                     });
+
                     const data = await response.json();
+
                     if (response.ok) {
                         setUser(data.user);
                     } else {

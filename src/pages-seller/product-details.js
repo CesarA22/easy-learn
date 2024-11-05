@@ -161,7 +161,7 @@ function ProductDetails() {
                                     product.images.map((image, index) => (
                                         <img
                                             key={index}
-                                            src={`http://localhost:3000${image}`}
+                                            src={`http://localhost:3000/${image}`}
                                             alt={`Imagem ${index + 1}`}
                                         />
                                     ))

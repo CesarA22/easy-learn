@@ -29,7 +29,7 @@ const CreateProduct = () => {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch('http://localhost:3000/products/add', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -117,6 +117,16 @@ const CreateProduct = () => {
                         </div>
                     </div>
                     <div className="dashboard__main-content__col--2">
+                        <div className="product-upload">
+                            <p>Seu produto:</p>
+                            <div className="upload-box">
+                                <input
+                                    type="file"
+                                    onChange={(e) => setFile(e.target.files[0])}
+                                    className="upload-input"
+                                />
+                            </div>
+                        </div>
                         <div className="product-upload">
                             <p>Seu produto:</p>
                             <div className="upload-box">

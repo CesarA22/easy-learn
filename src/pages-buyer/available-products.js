@@ -19,7 +19,7 @@ function AvailableProducts() {
 
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:3001/products/item', {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products/item`, {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${user.token}`,

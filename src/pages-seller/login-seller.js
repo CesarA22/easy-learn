@@ -23,7 +23,11 @@ function LoginSeller() {
             const data = await response.json();
 
             if (response.ok) {
-                setUser({ name: data.userData.name, email: data.userData.email });
+                setUser({
+                    name: data.userData.name,
+                    email: data.userData.email,
+                    token: data.userData.token,
+                });
                 navigate('/dashboard');
             } else {
                 setError(data.error);
