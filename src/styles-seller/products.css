@@ -94,13 +94,13 @@ header h2 {
     gap: 20px;
 }
 
-.product-card {
+/* .product-card {
     background-color: #1e1e1e;
     border-radius: 8px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-}
+} */
 
 .product-image {
     width: 100%;

@@ -1,0 +1,26 @@
+.sidebar {
+  width: 250px;
+  background-color: #1e1e1e;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar__menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar__menu ul li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.sidebar__settings {
+  margin-top: 20px;
+}
+
+.sidebar__settings p {
+  cursor: pointer;
+}
