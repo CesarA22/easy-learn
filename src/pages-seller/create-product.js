@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import '../styles-seller/create-product.css';
@@ -18,28 +18,6 @@ const CreateProduct = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = useState(false);
-    const [categories, setCategories] = useState([]);
-
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-                const data = await response.json();
-                const uniqueCategories = [...new Set(data.products.map(product => 
-                    product.category.name.toLowerCase()
-                ))];
-                setCategories(uniqueCategories);
-            } catch (error) {
-                console.error('Error fetching categories:', error);
-            }
-        };
-
-        fetchCategories();
-    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -87,45 +65,67 @@ const CreateProduct = () => {
         setError('');
         setSuccess('');
 
+        if (!formData.title || !formData.category || !formData.description || !formData.price || !formData.content) {
+            setError('Por favor, preencha todos os campos obrigatórios');
+            setLoading(false);
+            return;
+        }
+
         if (!thumbnail) {
-            setError('Por favor, selecione uma imagem para a thumbnail.');
+            setError('Por favor, selecione uma imagem para o produto');
             setLoading(false);
             return;
         }
 
         if (!productFile) {
-            setError('Por favor, selecione um arquivo PDF para o conteúdo do produto.');
+            setError('Por favor, selecione um arquivo PDF para o produto');
             setLoading(false);
             return;
         }
 
-        const formDataToSend = new FormData();
-
-        Object.keys(formData).forEach(key => {
-            formDataToSend.append(key, formData[key]);
-        });
-
-        formDataToSend.append('image', thumbnail, thumbnail.name);
-        formDataToSend.append('pdf', productFile, productFile.name);
-
         try {
             const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('Token não encontrado');
+            }
+
+            const formDataToSend = new FormData();
+
+            formDataToSend.append('title', formData.title.trim());
+            formDataToSend.append('category', formData.category.trim());
+            formDataToSend.append('description', formData.description.trim());
+            formDataToSend.append('price', formData.price);
+            formDataToSend.append('content', formData.content.trim());
+            formDataToSend.append('image', thumbnail);
+            formDataToSend.append('pdf', productFile);
+
+            console.log('Dados sendo enviados:', {
+                title: formData.title.trim(),
+                category: formData.category.trim(),
+                description: formData.description.trim(),
+                price: formData.price,
+                content: formData.content.trim(),
+                image: thumbnail.name,
+                pdf: productFile.name
+            });
+
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products`, {
                 method: 'POST',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    'Authorization': `Bearer ${token}`
                 },
                 body: formDataToSend
             });
 
+            const responseData = await response.json();
+            console.log('Resposta do servidor:', responseData);
+
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Erro ao cadastrar produto');
+                throw new Error(responseData.error || 'Erro ao cadastrar produto');
             }
 
             setSuccess('Produto cadastrado com sucesso!');
             
-            // Limpar formulário
             setFormData({
                 title: '',
                 category: '',
@@ -136,12 +136,12 @@ const CreateProduct = () => {
             setThumbnail(null);
             setProductFile(null);
 
-            // Timer para redirecionar após mostrar a mensagem de sucesso
             setTimeout(() => {
                 navigate('/products');
             }, 2000);
+
         } catch (error) {
-            console.error('Erro ao cadastrar produto:', error);
+            console.error('Erro detalhado:', error);
             setError(error.message || 'Erro ao cadastrar produto. Por favor, tente novamente.');
         } finally {
             setLoading(false);
@@ -195,8 +195,9 @@ const CreateProduct = () => {
                                     name="title"
                                     value={formData.title}
                                     onChange={handleInputChange}
-                                    placeholder="Adicione um título"
+                                    placeholder="Mínimo 5 caracteres"
                                     required
+                                    minLength={5}
                                 />
                             </div>
                             <div className="form-group">
@@ -207,15 +208,12 @@ const CreateProduct = () => {
                                     name="category"
                                     value={formData.category}
                                     onChange={handleInputChange}
-                                    list="categories"
-                                    placeholder="Adicione uma categoria"
+                                    placeholder="Digite a categoria do produto"
                                     required
                                 />
-                                <datalist id="categories">
-                                    {categories.map((cat, index) => (
-                                        <option key={index} value={cat} />
-                                    ))}
-                                </datalist>
+                                <small className="helper-text">
+                                    Digite qualquer categoria para seu produto
+                                </small>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="productDescription">Descrição do produto:</label>
@@ -224,8 +222,9 @@ const CreateProduct = () => {
                                     name="description"
                                     value={formData.description}
                                     onChange={handleInputChange}
-                                    placeholder="Adicione uma descrição para o produto"
+                                    placeholder="Descreva seu produto detalhadamente"
                                     required
+                                    minLength={10}
                                 />
                             </div>
                             <div className="form-group">
@@ -236,9 +235,12 @@ const CreateProduct = () => {
                                     name="price"
                                     value={formData.price}
                                     onChange={handleInputChange}
-                                    placeholder="Adicione um preço para o produto"
+                                    placeholder="Digite apenas números"
                                     required
                                 />
+                                <small className="helper-text">
+                                    Digite apenas números, sem pontos ou vírgulas
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -286,10 +288,11 @@ const CreateProduct = () => {
                         <p>Conteúdo do produto:</p>
                         <textarea
                             name="content"
-                            placeholder="Descreva o conteúdo do produto"
+                            placeholder="Descreva o conteúdo do seu produto"
                             value={formData.content}
                             onChange={handleInputChange}
                             required
+                            minLength={10}
                         />
                     </div>
                     <button 
