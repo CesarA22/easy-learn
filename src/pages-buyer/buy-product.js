@@ -1,16 +1,17 @@
 import { Sidebar } from "../components/sidebar.js";
 import { useNavigate } from "react-router-dom";
+import { LuChevronLeftCircle as LeftChevron } from "react-icons/lu";
 
 function BuyProduct() {
   const navigate = useNavigate();
   return (
-    <div className="buy-product">
+    <div className="consume-product">
       <Sidebar />
-      <main className="buy-product__container">
+      <main className="consume-product__container">
         <header>
-          <h1 className="buy-product__header">
+          <h1 className="consume-product__header">
             <button onClick={() => navigate("/available-products")}>
-              Return
+              <LeftChevron />
             </button>
             Produto disponivel:
           </h1>
@@ -19,11 +20,16 @@ function BuyProduct() {
           <div className="product-content__img" />
           <div className="product-content__header">
             <h2>Curso Pimegonho 2.0</h2>
+            <button onClick={() => navigate("purchase-confirmation")}>
+              Comprar
+            </button>
           </div>
-
           <div className="product-content__info">
-            <h3>Acessar o Arquivo do Produto:</h3>
-            <div className="product-content__file">Curso-Pimegonho.pdf</div>
+            <h3>Preco:</h3>
+            <div className="product-content__price">
+              <p>R$</p>
+              <div>100,00</div>
+            </div>
           </div>
 
           <div className="product-content__info">

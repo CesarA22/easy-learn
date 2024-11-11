@@ -6,12 +6,12 @@ body {
   color: #fff;
 }
 
-.buy-product {
+.consume-product {
   display: flex;
   height: 100vh;
 }
 
-.buy-product__container {
+.consume-product__container {
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -20,7 +20,101 @@ body {
   width: 100%;
 }
 
-.buy-product__header {
+.consume-product__header {
   font-size: 24px;
   margin-bottom: 35px;
+}
+
+.consume-product__header button {
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 10px;
+  transform: translateY(4px);
+}
+
+/* product classNames */
+/* TODO: colocar em outro lugar */
+.product-content {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+}
+
+.product-content__img {
+  width: 100%;
+  height: 300px;
+  background-color: #363636;
+  border-radius: 10px;
+}
+
+.product-content__header {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-content__header h2 {
+  font-size: 24px;
+}
+.product-content__header button {
+  background-color: #5483fc;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-content__header button:hover {
+  background-color: rgba(61, 110, 235, 0.74);
+}
+
+.product-content__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin-bottom: 10px;
+}
+
+.product-content__info h3 {
+  line-height: 0px;
+}
+
+.product-content__file {
+  text-decoration: underline;
+  color: #b2b2b2;
+  margin-bottom: 10px;
+}
+
+/* .product-content__info p { } */
+
+.product-content__price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-content__price div {
+  padding: 10px 16px;
+  background-color: #363636;
+  border-radius: 6px;
+}
+
+.product-content__categories {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-content__categories div {
+  padding: 10px 16px;
+  background-color: #363636;
+  border-radius: 6px;
 }
