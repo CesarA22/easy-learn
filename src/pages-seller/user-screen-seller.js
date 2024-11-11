@@ -1,47 +1,88 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles-seller/user-screen-seller.css';
-import { AuthContext } from '../context/AuthContext.js';
+import { AuthContext } from '../context/AuthContext';
 
 function UserScreenSeller() {
     const navigate = useNavigate();
-    const { user, setUser } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchUserData = async () => {
             const token = localStorage.getItem('token');
-            if (token) {
-                try {
-                    const response = await fetch('http://localhost:3000/user/me', {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    });
-                    const data = await response.json();
-                    if (response.ok) {
-                        setUser(data.user);
-                    } else {
-                        console.error('Failed to fetch user data:', data.error);
+            if (!token) {
+                navigate('/login-seller');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/seller/me`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user data');
                 }
+
+                const data = await response.json();
+                setUserData(data.result);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                setError('Failed to load user data');
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchUserData();
-    }, [setUser]);
+    }, [navigate]);
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        setUser(null);
+        logout();
         navigate('/login-seller');
     };
+
+    if (loading) {
+        return (
+            <div className="user-screen-container">
+                <aside className="sidebar">
+                    <div className="logo">Easy Learn</div>
+                    <div className="settings">
+                        <p>Loading...</p>
+                    </div>
+                </aside>
+                <main className="main-content">
+                    <div className="loading">Loading user data...</div>
+                </main>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="user-screen-container">
+                <aside className="sidebar">
+                    <div className="logo">Easy Learn</div>
+                    <div className="settings">
+                        <p>Error</p>
+                    </div>
+                </aside>
+                <main className="main-content">
+                    <div className="error">{error}</div>
+                </main>
+            </div>
+        );
+    }
 
     return (
         <div className="user-screen-container">
             <aside className="sidebar">
-                <div className="logo" onClick={() => navigate('/login-seller')}>
+                <div className="logo" onClick={() => navigate('/dashboard')}>
                     Easy Learn
                 </div>
                 <nav className="menu">
@@ -55,7 +96,7 @@ function UserScreenSeller() {
                 <div className="settings">
                     <p>Configurações</p>
                     <p onClick={() => navigate('/user-screen-seller')}>
-                        {user ? user.name : 'Nome do perfil'}
+                        {userData?.name || 'Nome do perfil'}
                     </p>
                 </div>
             </aside>
@@ -67,29 +108,37 @@ function UserScreenSeller() {
                     <h2>Perfil</h2>
                     <div className="profile-content">
                         <div className="profile-picture">
-                            <div className="picture">{user ? user.name[0] : 'N'}</div>
+                            <div className="picture">
+                                {userData?.name?.[0]?.toUpperCase() || 'N'}
+                            </div>
                             <div className="edit-icon">+</div>
                         </div>
                         <div className="profile-details">
                             <p>
-                                <strong>Nome:</strong> {user ? user.name : 'Nome do perfil'}
+                                <strong>Nome:</strong> {userData?.name || 'Nome não disponível'}
                             </p>
                             <p>
-                                <strong>Documento:</strong> 345. 123.123-40{' '}
+                                <strong>Documento:</strong> {userData?.cpf || 'CPF não disponível'}
                             </p>
                             <p>
-                                <strong>Telefone:</strong> (19)988776655{' '}
+                                <strong>Telefone:</strong> {userData?.phone || 'Telefone não disponível'}
                             </p>
                             <p>
-                                <strong>Email:</strong> {user ? user.email : 'email@dominio.com'}
+                                <strong>Email:</strong> {userData?.email || 'Email não disponível'}
                             </p>
                             <p>
                                 <strong>Idioma:</strong> Português
                             </p>
                             <p>
-                                <strong>Verificação:</strong>{' '}
+                                <strong>Status da Conta:</strong>{' '}
                                 <span className="verified">Dados Verificados</span>
                             </p>
+                            {userData?.Products && (
+                                <p>
+                                    <strong>Produtos Cadastrados:</strong>{' '}
+                                    {userData.Products.length}
+                                </p>
+                            )}
                         </div>
                     </div>
                     <button className="edit-button">Editar</button>
@@ -97,13 +146,29 @@ function UserScreenSeller() {
                 <section className="business">
                     <h2>Negócios</h2>
                     <div className="business-content">
-                        <div className="business-item">
-                            <p>
-                                <strong>Exemplo-1</strong>
-                            </p>
-                            <p>Descrição do exemplo...</p>
-                        </div>
-                        <button className="new-business-button">+ Novo Negócio</button>
+                        {userData?.Products && userData.Products.length > 0 ? (
+                            <div className="business-stats">
+                                <div className="business-item">
+                                    <p>
+                                        <strong>Total de Produtos</strong>
+                                    </p>
+                                    <p>{userData.Products.length} produtos cadastrados</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="business-item">
+                                <p>
+                                    <strong>Nenhum produto cadastrado</strong>
+                                </p>
+                                <p>Comece cadastrando seu primeiro produto!</p>
+                            </div>
+                        )}
+                        <button 
+                            className="new-business-button"
+                            onClick={() => navigate('/create-product')}
+                        >
+                            + Novo Produto
+                        </button>
                     </div>
                 </section>
                 <button className="logout-button" onClick={handleLogout}>

@@ -8,79 +8,68 @@ import { Product } from "../components/product-card.js";
 function AvailableProducts() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-
-  // TODO: tirar depois
-  const mockedProducts = [
-    {
-      id: 1,
-      name: "prod-1",
-      categories: ["software", "curso", "ebook"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 11,
-    },
-    {
-      id: 2,
-      name: "prod-2",
-      categories: ["curso", "guia", "treinamento"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 12,
-    },
-    {
-      id: 3,
-      name: "prod-3",
-      categories: ["design", "modelo", "curso"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 13,
-    },
-    {
-      id: 4,
-      name: "prod-4",
-      categories: ["software", "template", "ebook"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 14,
-    },
-    {
-      id: 5,
-      name: "prod-5",
-      categories: ["aplicativo", "script", "ebook"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 15,
-    },
-  ];
-
-  // TODO: tirar o mockedProducts e deixar uma array vazia
-  const [products, setProducts] = useState([...mockedProducts]);
-
-  // TODO: mudar as categorias de acordo com o projeto
-  // select filter hard-coded
-  const categories = [
-    "todos",
-    "software",
-    "curso",
-    "ebook",
-    "guia",
-    "treinamento",
-    "design",
-    "modelo",
-    "template",
-    "aplicativo",
-    "script",
-  ];
-
-  const price = ["sem ordem", "menor preco", "maior preco"];
-
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("todos");
   const [priceOrder, setPriceOrder] = useState("sem ordem");
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("No token found");
+        }
+
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/products`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const data = await response.json();
+        
+        // Transformar os dados para corresponder ao formato esperado pelo componente Product
+        const formattedProducts = data.products.map(product => ({
+          id: product.id,
+          name: product.title,
+          categories: [product.category.name],
+          description: product.description,
+          url: `/consume-product/${product.id}`,
+          price: product.price,
+          image: product.image,
+          content: product.content,
+          author: product.author,
+          files: product.File
+        }));
+
+        setProducts(formattedProducts);
+
+        // Extrair categorias únicas dos produtos
+        const uniqueCategories = ["todos"];
+        const categorySet = new Set(data.products.map(product => product.category.name));
+        uniqueCategories.push(...categorySet);
+        setCategories(uniqueCategories);
+
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setError("Erro ao carregar produtos. Por favor, tente novamente.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const orderedProducts = products
     .filter(
@@ -97,42 +86,27 @@ function AvailableProducts() {
       return 0;
     });
 
-  // TODO: implementar fetch da API
-  /* useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
-    console.log(token);
-    if (!user) return;
+  if (loading) {
+    return (
+      <div className="produtos-disponiveis">
+        <Sidebar />
+        <main className="produtos-disponiveis__container">
+          <div className="loading-message">Carregando produtos...</div>
+        </main>
+      </div>
+    );
+  }
 
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/products/item`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        console.log("Fetched products:", data);
-        setProducts(data);
-      } catch (error) {
-        console.error("There was a problem with the fetch operation:", error);
-      }
-    };
-
-    fetchProducts();
-  }, [user]); */
+  if (error) {
+    return (
+      <div className="produtos-disponiveis">
+        <Sidebar />
+        <main className="produtos-disponiveis__container">
+          <div className="error-message">{error}</div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="produtos-disponiveis">
@@ -145,7 +119,7 @@ function AvailableProducts() {
         </header>
         <section className="produtos-disponiveis__header">
           <div className="produtos-disponiveis__header__text">
-            <h2>Conteúdos comprados:</h2>
+            <h2>Produtos disponíveis:</h2>
             <span>(total {products.length})</span>
           </div>
           <div className="produtos-disponiveis__header__filters">
@@ -158,32 +132,43 @@ function AvailableProducts() {
                 className="select-input"
               >
                 {categories.map((category) => (
-                  <option value={category}>{category}</option>
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
                 ))}
               </select>
             </div>
             <div className="select-container">
-              <label htmlFor="category-select">Preco:</label>
+              <label htmlFor="price-select">Preço:</label>
               <select
-                id="category-select"
+                id="price-select"
                 value={priceOrder}
                 onChange={(e) => setPriceOrder(e.target.value)}
                 className="select-input"
               >
-                {price.map((price) => (
-                  <option value={price}>{price}</option>
-                ))}
+                <option value="sem ordem">Sem ordem</option>
+                <option value="menor preco">Menor preço</option>
+                <option value="maior preco">Maior preço</option>
               </select>
             </div>
           </div>
         </section>
-        <div className="produtos-comprados__list">
+        <div className="produtos-disponiveis__list">
           {orderedProducts.length > 0 ? (
-            orderedProducts.map((product, index) => (
-              <Product key={index} product={product} />
+            orderedProducts.map((product) => (
+              <Product 
+                key={product.id} 
+                product={product}
+                onClick={() => navigate(`/consume-product/${product.id}`)}
+              />
             ))
           ) : (
-            <p>Nenhum produto encontrado.</p>
+            <div className="no-products-message">
+              {selectedCategory === "todos" 
+                ? "Nenhum produto disponível no momento."
+                : `Nenhum produto encontrado na categoria ${selectedCategory}.`
+              }
+            </div>
           )}
         </div>
       </main>

@@ -1,88 +1,66 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../styles-buyer/bought-products.css";
 import { AuthContext } from "../context/AuthContext.js";
 import { Sidebar } from "../components/sidebar.js";
 import { Product } from "../components/product-card.js";
+import productService from "../services/productService";
 
 function BoughtProducts() {
   const { user } = useContext(AuthContext);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("todos");
+  const [categories, setCategories] = useState(["todos"]);
 
-  const mockedProducts = [
-    {
-      id: 1,
-      name: "prod-1",
-      categories: ["software", "curso", "ebook"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 11,
-    },
-    {
-      id: 2,
-      name: "prod-2",
-      categories: ["curso", "guia", "treinamento"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 12,
-    },
-    {
-      id: 3,
-      name: "prod-3",
-      categories: ["design", "modelo", "curso"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 13,
-    },
-    {
-      id: 4,
-      name: "prod-4",
-      categories: ["software", "template", "ebook"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 14,
-    },
-    {
-      id: 5,
-      name: "prod-5",
-      categories: ["aplicativo", "script", "ebook"],
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      url: "/",
-      price: 15,
-    },
-  ];
+  useEffect(() => {
+    const fetchBoughtProducts = async () => {
+      if (!user?.id) return;
+      
+      try {
+        const boughtProducts = await productService.getBoughtProducts(user.id);
+        setProducts(boughtProducts);
+        
+        // Extrair categorias únicas dos produtos comprados
+        const uniqueCategories = new Set(boughtProducts.flatMap(product => product.categories));
+        setCategories(["todos", ...uniqueCategories]);
+      } catch (err) {
+        setError("Erro ao carregar produtos comprados");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // TODO: tirar o mockedProducts e deixar uma array vazia
-  const [products, setProducts] = useState([...mockedProducts]);
+    fetchBoughtProducts();
+  }, [user]);
 
-  // TODO: implementar fetch da API
-  //       setProducts(retorno_da_api)
-
-  // TODO: mudar as categorias de acordo com o projeto
-  // select filter hard-coded
-  const categories = [
-    "todos",
-    "software",
-    "curso",
-    "ebook",
-    "guia",
-    "treinamento",
-    "design",
-    "modelo",
-    "template",
-    "aplicativo",
-    "script",
-  ];
-
-  const orderedProducts = products.filter((product) =>
+  const filteredProducts = products.filter((product) =>
     selectedCategory === "todos"
-      ? products
+      ? true
       : product.categories.includes(selectedCategory)
   );
+
+  if (loading) {
+    return (
+      <div className="produtos-comprados">
+        <Sidebar />
+        <main className="produtos-comprados__container">
+          <p>Carregando produtos...</p>
+        </main>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="produtos-comprados">
+        <Sidebar />
+        <main className="produtos-comprados__container">
+          <p className="error-message">{error}</p>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="produtos-comprados">
@@ -109,16 +87,16 @@ function BoughtProducts() {
                 className="select-input"
               >
                 {categories.map((category) => (
-                  <option value={category}>{category}</option>
+                  <option key={category} value={category}>{category}</option>
                 ))}
               </select>
             </div>
           </div>
         </section>
         <div className="produtos-comprados__list">
-          {orderedProducts.length > 0 ? (
-            orderedProducts.map((product, index) => (
-              <Product key={index} product={product} />
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <Product key={product.id} product={product} />
             ))
           ) : (
             <p>Nenhum produto encontrado.</p>
