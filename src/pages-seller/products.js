@@ -152,7 +152,6 @@ const EditModal = ({ product, onClose, onSave }) => {
 };
 
 const ProductCard = ({ product, onEdit }) => {
-<<<<<<< HEAD
     const [imageError, setImageError] = useState(false);
     
     const getImageUrl = (imageName) => {
@@ -165,11 +164,6 @@ const ProductCard = ({ product, onEdit }) => {
         setImageError(true);
         console.error('Erro ao carregar imagem:', product.image);
     };
-=======
-    const imageUrl = product.image
-        ? `${process.env.REACT_APP_BACKEND_URL}/public/images/${product.image}`
-        : null;
->>>>>>> 504ba36b910c9a43cd9f70786180bb58971dc285
 
     return (
         <div className="product-card">
@@ -189,12 +183,6 @@ const ProductCard = ({ product, onEdit }) => {
             </div>
             <div className="product-info">
                 <h3>{product.title}</h3>
-<<<<<<< HEAD
-=======
-                {product.category && (
-                    <span className="product-category">{product.category.name}</span>
-                )}
->>>>>>> 504ba36b910c9a43cd9f70786180bb58971dc285
                 <p className="product-description">
                     {product.description && product.description.length > 100
                         ? `${product.description.substring(0, 100)}...`
@@ -207,7 +195,6 @@ const ProductCard = ({ product, onEdit }) => {
                     }).format(product.price)}
                 </div>
                 <div className="product-actions">
-<<<<<<< HEAD
                     <button 
                         className="edit-button"
                         onClick={(e) => {
@@ -216,17 +203,6 @@ const ProductCard = ({ product, onEdit }) => {
                             onEdit(product);
                         }}
                     >
-=======
-                    {/* Botão de ver detalhes comentado para implementação futura
-                    <button 
-                        className="view-button"
-                        onClick={() => onView(product.id)}
-                    >
-                        Ver Detalhes
-                    </button>
-                    */}
-                    <button className="edit-button" onClick={() => onEdit(product)}>
->>>>>>> 504ba36b910c9a43cd9f70786180bb58971dc285
                         Editar
                     </button>
                 </div>
