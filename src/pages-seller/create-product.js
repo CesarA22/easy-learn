@@ -11,7 +11,7 @@ const CreateProduct = () => {
         category: '',
         description: '',
         price: '',
-        content: ''
+        content: '',
     });
     const [thumbnail, setThumbnail] = useState(null);
     const [productFile, setProductFile] = useState(null);
@@ -23,14 +23,14 @@ const CreateProduct = () => {
         const { name, value } = e.target;
         if (name === 'price') {
             const numericValue = value.replace(/\D/g, '');
-            setFormData(prev => ({
+            setFormData((prev) => ({
                 ...prev,
-                [name]: numericValue
+                [name]: numericValue,
             }));
         } else {
-            setFormData(prev => ({
+            setFormData((prev) => ({
                 ...prev,
-                [name]: value
+                [name]: value,
             }));
         }
     };
@@ -65,7 +65,13 @@ const CreateProduct = () => {
         setError('');
         setSuccess('');
 
-        if (!formData.title || !formData.category || !formData.description || !formData.price || !formData.content) {
+        if (
+            !formData.title ||
+            !formData.category ||
+            !formData.description ||
+            !formData.price ||
+            !formData.content
+        ) {
             setError('Por favor, preencha todos os campos obrigatórios');
             setLoading(false);
             return;
@@ -106,15 +112,15 @@ const CreateProduct = () => {
                 price: formData.price,
                 content: formData.content.trim(),
                 image: thumbnail.name,
-                pdf: productFile.name
+                pdf: productFile.name,
             });
 
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products`, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    Authorization: `Bearer ${token}`,
                 },
-                body: formDataToSend
+                body: formDataToSend,
             });
 
             const responseData = await response.json();
@@ -125,13 +131,13 @@ const CreateProduct = () => {
             }
 
             setSuccess('Produto cadastrado com sucesso!');
-            
+
             setFormData({
                 title: '',
                 category: '',
                 description: '',
                 price: '',
-                content: ''
+                content: '',
             });
             setThumbnail(null);
             setProductFile(null);
@@ -139,7 +145,6 @@ const CreateProduct = () => {
             setTimeout(() => {
                 navigate('/products');
             }, 2000);
-
         } catch (error) {
             console.error('Erro detalhado:', error);
             setError(error.message || 'Erro ao cadastrar produto. Por favor, tente novamente.');
@@ -257,10 +262,10 @@ const CreateProduct = () => {
                                 />
                                 {thumbnail && (
                                     <div className="preview">
-                                        <img 
-                                            src={URL.createObjectURL(thumbnail)} 
-                                            alt="Preview" 
-                                            style={{ maxWidth: '200px' }} 
+                                        <img
+                                            src={URL.createObjectURL(thumbnail)}
+                                            alt="Preview"
+                                            style={{ maxWidth: '200px' }}
                                         />
                                     </div>
                                 )}
@@ -295,11 +300,7 @@ const CreateProduct = () => {
                             minLength={10}
                         />
                     </div>
-                    <button 
-                        type="submit" 
-                        className="edit-button" 
-                        disabled={loading}
-                    >
+                    <button type="submit" className="edit-button" disabled={loading}>
                         {loading ? 'Cadastrando...' : 'Cadastrar Produto'}
                     </button>
                 </form>

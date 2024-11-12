@@ -28,9 +28,9 @@ function LoginBuyer() {
             if (response.ok && data.userData) {
                 const userData = {
                     ...data.userData,
-                    token: data.userData.token || data.token
+                    token: data.userData.token || data.token,
                 };
-                
+
                 await login(userData, 'buyer');
                 navigate('/available-products');
             } else {
@@ -63,17 +63,16 @@ function LoginBuyer() {
                         onChange={(e) => setPassword(e.target.value)}
                         disabled={loading}
                     />
-                    <button 
-                        type="submit" 
-                        className="login__btn"
-                        disabled={loading}
-                    >
+                    <button type="submit" className="login__btn" disabled={loading}>
                         {loading ? 'Entrando...' : 'Entrar'}
                     </button>
                 </form>
                 <div className="register-link">
                     <p>
-                        Não tem uma conta? <span onClick={() => navigate('/create-account-buyer')}>Crie uma conta</span>
+                        Não tem uma conta?{' '}
+                        <span onClick={() => navigate('/create-account-buyer')}>
+                            Crie uma conta
+                        </span>
                     </p>
                 </div>
             </div>

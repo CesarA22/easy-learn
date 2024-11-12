@@ -29,9 +29,9 @@ function LoginSeller() {
                 // Garantir que o token está incluído nos dados do usuário
                 const userData = {
                     ...data.userData,
-                    token: data.userData.token || data.token
+                    token: data.userData.token || data.token,
                 };
-                
+
                 await login(userData, 'seller');
                 navigate('/dashboard');
             } else {
@@ -64,17 +64,16 @@ function LoginSeller() {
                         onChange={(e) => setPassword(e.target.value)}
                         disabled={loading}
                     />
-                    <button 
-                        type="submit" 
-                        className="login__btn"
-                        disabled={loading}
-                    >
+                    <button type="submit" className="login__btn" disabled={loading}>
                         {loading ? 'Entrando...' : 'Entrar'}
                     </button>
                 </form>
                 <div className="register-link">
                     <p>
-                        Não tem uma conta? <span onClick={() => navigate('/create-account-seller')}>Crie uma conta</span>
+                        Não tem uma conta?{' '}
+                        <span onClick={() => navigate('/create-account-seller')}>
+                            Crie uma conta
+                        </span>
                     </p>
                 </div>
             </div>

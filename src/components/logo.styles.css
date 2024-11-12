@@ -1,18 +1,18 @@
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .logo__text {
-  font-size: 18px;
-  font-weight: bold;
-  transform: translateY(2px);
+    font-size: 18px;
+    font-weight: bold;
+    transform: translateY(2px);
 }
 
 .logo__img {
-  width: 45px;
-  height: 45px;
+    width: 45px;
+    height: 45px;
 }

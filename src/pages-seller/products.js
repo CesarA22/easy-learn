@@ -8,7 +8,7 @@ const EditModal = ({ product, onClose, onSave }) => {
         title: product.title || '',
         description: product.description || '',
         price: product.price || '',
-        content: product.content || ''
+        content: product.content || '',
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -28,22 +28,25 @@ const EditModal = ({ product, onClose, onSave }) => {
                 title: formData.title.trim(),
                 description: formData.description.trim(),
                 content: formData.content.trim(),
-                price: parseInt(formData.price)
+                price: parseInt(formData.price),
             };
 
             console.log('Enviando dados:', {
                 id: product.id,
-                data: updatedData
+                data: updatedData,
             });
 
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products/${product.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+            const response = await fetch(
+                `${process.env.REACT_APP_BACKEND_URL}/products/${product.id}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(updatedData),
                 },
-                body: JSON.stringify(updatedData)
-            });
+            );
 
             const responseData = await response.json();
             console.log('Resposta:', responseData);
@@ -67,7 +70,9 @@ const EditModal = ({ product, onClose, onSave }) => {
             <div className="modal-content">
                 <div className="modal-header">
                     <h2>Editar Produto</h2>
-                    <button className="close-button" onClick={onClose}>&times;</button>
+                    <button className="close-button" onClick={onClose}>
+                        &times;
+                    </button>
                 </div>
                 {error && <div className="modal-error">{error}</div>}
                 <form onSubmit={handleSubmit}>
@@ -78,10 +83,12 @@ const EditModal = ({ product, onClose, onSave }) => {
                                 type="text"
                                 name="title"
                                 value={formData.title}
-                                onChange={(e) => setFormData(prev => ({
-                                    ...prev,
-                                    title: e.target.value
-                                }))}
+                                onChange={(e) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        title: e.target.value,
+                                    }))
+                                }
                                 required
                             />
                         </div>
@@ -90,10 +97,12 @@ const EditModal = ({ product, onClose, onSave }) => {
                             <textarea
                                 name="description"
                                 value={formData.description}
-                                onChange={(e) => setFormData(prev => ({
-                                    ...prev,
-                                    description: e.target.value
-                                }))}
+                                onChange={(e) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        description: e.target.value,
+                                    }))
+                                }
                                 required
                             />
                         </div>
@@ -103,10 +112,12 @@ const EditModal = ({ product, onClose, onSave }) => {
                                 type="number"
                                 name="price"
                                 value={formData.price}
-                                onChange={(e) => setFormData(prev => ({
-                                    ...prev,
-                                    price: e.target.value
-                                }))}
+                                onChange={(e) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        price: e.target.value,
+                                    }))
+                                }
                                 required
                                 min="0"
                             />
@@ -116,27 +127,21 @@ const EditModal = ({ product, onClose, onSave }) => {
                             <textarea
                                 name="content"
                                 value={formData.content}
-                                onChange={(e) => setFormData(prev => ({
-                                    ...prev,
-                                    content: e.target.value
-                                }))}
+                                onChange={(e) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        content: e.target.value,
+                                    }))
+                                }
                                 required
                             />
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button 
-                            type="button" 
-                            className="cancel-button" 
-                            onClick={onClose}
-                        >
+                        <button type="button" className="cancel-button" onClick={onClose}>
                             Cancelar
                         </button>
-                        <button 
-                            type="submit" 
-                            className="save-button"
-                            disabled={loading}
-                        >
+                        <button type="submit" className="save-button" disabled={loading}>
                             {loading ? 'Salvando...' : 'Salvar'}
                         </button>
                     </div>
@@ -147,6 +152,7 @@ const EditModal = ({ product, onClose, onSave }) => {
 };
 
 const ProductCard = ({ product, onEdit }) => {
+<<<<<<< HEAD
     const [imageError, setImageError] = useState(false);
     
     const getImageUrl = (imageName) => {
@@ -159,6 +165,11 @@ const ProductCard = ({ product, onEdit }) => {
         setImageError(true);
         console.error('Erro ao carregar imagem:', product.image);
     };
+=======
+    const imageUrl = product.image
+        ? `${process.env.REACT_APP_BACKEND_URL}/public/images/${product.image}`
+        : null;
+>>>>>>> 504ba36b910c9a43cd9f70786180bb58971dc285
 
     return (
         <div className="product-card">
@@ -178,6 +189,12 @@ const ProductCard = ({ product, onEdit }) => {
             </div>
             <div className="product-info">
                 <h3>{product.title}</h3>
+<<<<<<< HEAD
+=======
+                {product.category && (
+                    <span className="product-category">{product.category.name}</span>
+                )}
+>>>>>>> 504ba36b910c9a43cd9f70786180bb58971dc285
                 <p className="product-description">
                     {product.description && product.description.length > 100
                         ? `${product.description.substring(0, 100)}...`
@@ -186,10 +203,11 @@ const ProductCard = ({ product, onEdit }) => {
                 <div className="product-price">
                     {new Intl.NumberFormat('pt-BR', {
                         style: 'currency',
-                        currency: 'BRL'
+                        currency: 'BRL',
                     }).format(product.price)}
                 </div>
                 <div className="product-actions">
+<<<<<<< HEAD
                     <button 
                         className="edit-button"
                         onClick={(e) => {
@@ -198,6 +216,17 @@ const ProductCard = ({ product, onEdit }) => {
                             onEdit(product);
                         }}
                     >
+=======
+                    {/* Botão de ver detalhes comentado para implementação futura
+                    <button 
+                        className="view-button"
+                        onClick={() => onView(product.id)}
+                    >
+                        Ver Detalhes
+                    </button>
+                    */}
+                    <button className="edit-button" onClick={() => onEdit(product)}>
+>>>>>>> 504ba36b910c9a43cd9f70786180bb58971dc285
                         Editar
                     </button>
                 </div>
@@ -224,8 +253,8 @@ function Products() {
 
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/seller/me`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             });
 
             if (!response.ok) throw new Error('Falha ao buscar produtos');
@@ -253,10 +282,10 @@ function Products() {
     const handleSaveEdit = async (updatedProduct) => {
         try {
             // Atualizar o produto na lista local
-            setProducts(currentProducts => 
-                currentProducts.map(prod => 
-                    prod.id === updatedProduct.id ? updatedProduct : prod
-                )
+            setProducts((currentProducts) =>
+                currentProducts.map((prod) =>
+                    prod.id === updatedProduct.id ? updatedProduct : prod,
+                ),
             );
 
             // Fechar o modal
@@ -302,7 +331,7 @@ function Products() {
             <main className="main-content">
                 <section className="header-section">
                     <h1>Seus Produtos</h1>
-                    <button 
+                    <button
                         className="add-product-button"
                         onClick={() => navigate('/create-product')}
                     >
@@ -318,7 +347,7 @@ function Products() {
                             <div className="no-products">
                                 <h2>Nenhum produto cadastrado</h2>
                                 <p>Comece adicionando seu primeiro produto</p>
-                                <button 
+                                <button
                                     onClick={() => navigate('/create-product')}
                                     className="create-first-button"
                                 >

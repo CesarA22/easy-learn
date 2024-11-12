@@ -38,7 +38,11 @@
     transition: background-color 0.2s;
 }
 
+<<<<<<< HEAD
 .menu ul li:hover, 
+=======
+.menu ul li:hover,
+>>>>>>> 504ba36b910c9a43cd9f70786180bb58971dc285
 .menu ul li.active {
     background-color: #2d2d2d;
 }
@@ -195,7 +199,9 @@
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Error States */
@@ -379,6 +385,7 @@
 .save-button:hover:not(:disabled) {
     background-color: #2563eb;
 }
+<<<<<<< HEAD
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -404,3 +411,5 @@
         gap: 10px;
     }
 }
+=======
+>>>>>>> 504ba36b910c9a43cd9f70786180bb58971dc285

@@ -21,8 +21,8 @@ function UserScreenBuyer() {
             try {
                 const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/buyer/me`, {
                     headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+                        Authorization: `Bearer ${token}`,
+                    },
                 });
 
                 if (!response.ok) {
@@ -87,7 +87,9 @@ function UserScreenBuyer() {
                 </div>
                 <nav className="menu">
                     <ul>
-                        <li onClick={() => navigate('/available-products')}>Produtos disponíveis</li>
+                        <li onClick={() => navigate('/available-products')}>
+                            Produtos disponíveis
+                        </li>
                         <li onClick={() => navigate('/bought-products')}>Produtos Comprados</li>
                     </ul>
                 </nav>
@@ -119,7 +121,8 @@ function UserScreenBuyer() {
                                 <strong>Documento:</strong> {userData?.cpf || 'CPF não disponível'}
                             </p>
                             <p>
-                                <strong>Telefone:</strong> {userData?.phone || 'Telefone não disponível'}
+                                <strong>Telefone:</strong>{' '}
+                                {userData?.phone || 'Telefone não disponível'}
                             </p>
                             <p>
                                 <strong>Email:</strong> {userData?.email || 'Email não disponível'}
@@ -133,8 +136,7 @@ function UserScreenBuyer() {
                             </p>
                             {userData?.products && (
                                 <p>
-                                    <strong>Produtos Comprados:</strong>{' '}
-                                    {userData.products.length}
+                                    <strong>Produtos Comprados:</strong> {userData.products.length}
                                 </p>
                             )}
                         </div>
@@ -153,7 +155,7 @@ function UserScreenBuyer() {
                                     </p>
                                     <p>{userData.products.length} produtos</p>
                                 </div>
-                                <button 
+                                <button
                                     className="view-products-button"
                                     onClick={() => navigate('/bought-products')}
                                 >
@@ -166,7 +168,7 @@ function UserScreenBuyer() {
                                     <strong>Nenhum produto comprado</strong>
                                 </p>
                                 <p>Explore nossos produtos disponíveis!</p>
-                                <button 
+                                <button
                                     className="view-products-button"
                                     onClick={() => navigate('/available-products')}
                                 >

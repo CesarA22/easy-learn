@@ -3,25 +3,25 @@ import { useNavigate } from 'react-router-dom';
 
 export function Product({ product }) {
     const navigate = useNavigate();
-    
+
     // Função para formatar o preço
     const formatPrice = (price) => {
         return new Intl.NumberFormat('pt-BR', {
             style: 'currency',
-            currency: 'BRL'
+            currency: 'BRL',
         }).format(price);
     };
 
     return (
         <div className="product-card" onClick={() => navigate(product.url)}>
-            <div 
+            <div
                 className="product-card__img"
                 style={{
-                    backgroundImage: product.image 
+                    backgroundImage: product.image
                         ? `url(${process.env.REACT_APP_BACKEND_URL}/images/${product.image})`
                         : 'none',
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center'
+                    backgroundPosition: 'center',
                 }}
             />
             <div className="product-card__content">
@@ -36,11 +36,9 @@ export function Product({ product }) {
                         <p className="product-card__description">{product.description}</p>
                         <div className="product-card__info">
                             <p className="product-card__author">
-                                Por: {product.author?.name || "Autor não disponível"}
+                                Por: {product.author?.name || 'Autor não disponível'}
                             </p>
-                            <p className="product-card__price">
-                                {formatPrice(product.price)}
-                            </p>
+                            <p className="product-card__price">{formatPrice(product.price)}</p>
                         </div>
                     </div>
                 </div>

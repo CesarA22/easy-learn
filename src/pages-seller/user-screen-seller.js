@@ -21,8 +21,8 @@ function UserScreenSeller() {
             try {
                 const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/seller/me`, {
                     headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+                        Authorization: `Bearer ${token}`,
+                    },
                 });
 
                 if (!response.ok) {
@@ -121,7 +121,8 @@ function UserScreenSeller() {
                                 <strong>Documento:</strong> {userData?.cpf || 'CPF não disponível'}
                             </p>
                             <p>
-                                <strong>Telefone:</strong> {userData?.phone || 'Telefone não disponível'}
+                                <strong>Telefone:</strong>{' '}
+                                {userData?.phone || 'Telefone não disponível'}
                             </p>
                             <p>
                                 <strong>Email:</strong> {userData?.email || 'Email não disponível'}
@@ -163,7 +164,7 @@ function UserScreenSeller() {
                                 <p>Comece cadastrando seu primeiro produto!</p>
                             </div>
                         )}
-                        <button 
+                        <button
                             className="new-business-button"
                             onClick={() => navigate('/create-product')}
                         >
