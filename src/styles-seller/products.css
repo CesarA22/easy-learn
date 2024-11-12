@@ -1,7 +1,9 @@
+/* products.css */
+/* Container Principal */
 .products-container {
     display: flex;
     min-height: 100vh;
-    background-color: #333;
+    background-color: #1e1e1e;
 }
 
 /* Sidebar */
@@ -12,7 +14,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
 }
 
 .logo {
@@ -37,12 +38,14 @@
     transition: background-color 0.2s;
 }
 
-.menu ul li:hover, .menu ul li.active {
+.menu ul li:hover, 
+.menu ul li.active {
     background-color: #2d2d2d;
 }
 
 .settings {
     margin-top: auto;
+    padding-top: 20px;
 }
 
 .settings p {
@@ -59,17 +62,15 @@
 /* Main Content */
 .main-content {
     flex: 1;
-    padding: 20px 30px;
-    overflow-y: auto;
+    padding: 20px;
+    background-color: #1e1e1e;
 }
 
-/* Header Section */
 .header-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    padding-top: 10px;
 }
 
 .header-section h1 {
@@ -78,37 +79,20 @@
     margin: 0;
 }
 
-.add-product-button {
-    background-color: #3b82f6;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.add-product-button:hover {
-    background-color: #2563eb;
-}
-
 /* Products Grid */
-.products-section {
-    margin-top: 20px;
-}
-
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    padding-top: 20px;
 }
 
 /* Product Card */
 .product-card {
-    background-color: #1e1e1e;
+    background-color: #2d2d2d;
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -116,19 +100,22 @@
 
 .product-card:hover {
     transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .product-image {
+    position: relative;
     width: 100%;
     height: 200px;
     overflow: hidden;
-    background-color: #2d2d2d;
+    background-color: #363636;
 }
 
-.product-image img {
+.product-thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
 .placeholder-image {
@@ -137,61 +124,52 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #363636;
     color: #666;
 }
 
 .product-info {
-    padding: 15px;
+    padding: 16px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
 .product-info h3 {
-    margin: 0 0 10px;
-    color: #fff;
+    margin: 0 0 12px;
     font-size: 18px;
-}
-
-.product-category {
-    display: inline-block;
-    background-color: #2d2d2d;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 14px;
-    color: #9ca3af;
-    margin-bottom: 10px;
+    color: #fff;
+    line-height: 1.4;
 }
 
 .product-description {
     color: #9ca3af;
     font-size: 14px;
     line-height: 1.5;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     flex: 1;
 }
 
 .product-price {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: #3b82f6;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .product-actions {
-    display: flex;
-    gap: 10px;
+    margin-top: auto;
 }
 
 .edit-button {
     width: 100%;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
+    padding: 10px;
     background-color: #3b82f6;
     color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
     transition: background-color 0.2s;
 }
 
@@ -220,11 +198,37 @@
     to { transform: rotate(360deg); }
 }
 
+/* Error States */
+.error-message {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Add Product Button */
+.add-product-button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.add-product-button:hover {
+    background-color: #2563eb;
+}
+
 /* Empty State */
 .no-products {
     text-align: center;
     padding: 40px;
-    background-color: #1e1e1e;
+    background-color: #2d2d2d;
     border-radius: 8px;
     margin-top: 20px;
 }
@@ -239,28 +243,15 @@
     margin-bottom: 20px;
 }
 
-.create-first-button {
-    background-color: #3b82f6;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.create-first-button:hover {
-    background-color: #2563eb;
-}
-
-/* Error State */
-.error-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    color: #ef4444;
-    margin-top: 20px;
+/* Category Badge */
+.product-category {
+    display: inline-block;
+    background-color: #363636;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 12px;
 }
 
 .modal-overlay {
@@ -279,8 +270,8 @@
 .modal-content {
     background-color: #1e1e1e;
     border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 1000px;
     max-height: 90vh;
     overflow-y: auto;
 }
@@ -312,11 +303,11 @@
 }
 
 .modal-body {
-    padding: 1.5rem;
+    padding: 5.0rem;
 }
 
 .modal-footer {
-    padding: 1rem;
+    padding: 3rem;
     border-top: 1px solid #333;
     display: flex;
     justify-content: flex-end;
@@ -387,4 +378,29 @@
 
 .save-button:hover:not(:disabled) {
     background-color: #2563eb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .products-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-section {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

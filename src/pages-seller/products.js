@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles-seller/products.css';
 import { AuthContext } from '../context/AuthContext';
@@ -147,35 +147,37 @@ const EditModal = ({ product, onClose, onSave }) => {
 };
 
 const ProductCard = ({ product, onEdit }) => {
-    const imageUrl = product.image 
-        ? `${process.env.REACT_APP_BACKEND_URL}/public/images/${product.image}`
-        : null;
+    const [imageError, setImageError] = useState(false);
     
+    const getImageUrl = (imageName) => {
+        if (!imageName) return null;
+        // Alterando o caminho para acessar diretamente a pasta public
+        return `${process.env.REACT_APP_BACKEND_URL}/public/files/${imageName}`;
+    };
+
+    const handleImageError = () => {
+        setImageError(true);
+        console.error('Erro ao carregar imagem:', product.image);
+    };
+
     return (
         <div className="product-card">
             <div className="product-image">
-                {imageUrl ? (
+                {!imageError && product.image ? (
                     <img
-                        src={imageUrl}
+                        src={getImageUrl(product.image)}
                         alt={product.title}
-                        onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = '/placeholder-image.jpg';
-                        }}
+                        onError={handleImageError}
+                        className="product-thumbnail"
                     />
                 ) : (
                     <div className="placeholder-image">
-                        <span>Sem imagem</span>
+                        <span>Imagem não disponível</span>
                     </div>
                 )}
             </div>
             <div className="product-info">
                 <h3>{product.title}</h3>
-                {product.category && (
-                    <span className="product-category">
-                        {product.category.name}
-                    </span>
-                )}
                 <p className="product-description">
                     {product.description && product.description.length > 100
                         ? `${product.description.substring(0, 100)}...`
@@ -188,17 +190,13 @@ const ProductCard = ({ product, onEdit }) => {
                     }).format(product.price)}
                 </div>
                 <div className="product-actions">
-                    {/* Botão de ver detalhes comentado para implementação futura
-                    <button 
-                        className="view-button"
-                        onClick={() => onView(product.id)}
-                    >
-                        Ver Detalhes
-                    </button>
-                    */}
                     <button 
                         className="edit-button"
-                        onClick={() => onEdit(product)}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            onEdit(product);
+                        }}
                     >
                         Editar
                     </button>
