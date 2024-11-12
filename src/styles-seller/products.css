@@ -1,19 +1,117 @@
-/* Adicione ou atualize em seu arquivo products.css */
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
+.products-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #333;
 }
 
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.menu ul li:hover, .menu ul li.active {
+    background-color: #2d2d2d;
+}
+
+.settings {
+    margin-top: auto;
+}
+
+.settings p {
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+.settings p:hover {
+    background-color: #2d2d2d;
+    border-radius: 4px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px 30px;
+    overflow-y: auto;
+}
+
+/* Header Section */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-top: 10px;
+}
+
+.header-section h1 {
+    font-size: 24px;
+    color: #fff;
+    margin: 0;
+}
+
+.add-product-button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-product-button:hover {
+    background-color: #2563eb;
+}
+
+/* Products Grid */
+.products-section {
+    margin-top: 20px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Product Card */
 .product-card {
     background-color: #1e1e1e;
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.2s ease;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card:hover {
@@ -24,6 +122,7 @@
     width: 100%;
     height: 200px;
     overflow: hidden;
+    background-color: #2d2d2d;
 }
 
 .product-image img {
@@ -32,94 +131,260 @@
     object-fit: cover;
 }
 
+.placeholder-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
 .product-info {
-    padding: 1.5rem;
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-info h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: #ffffff;
+    margin: 0 0 10px;
+    color: #fff;
+    font-size: 18px;
 }
 
 .product-category {
     display: inline-block;
     background-color: #2d2d2d;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 14px;
     color: #9ca3af;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 .product-description {
     color: #9ca3af;
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
+    font-size: 14px;
     line-height: 1.5;
+    margin-bottom: 15px;
+    flex: 1;
 }
 
 .product-price {
-    font-size: 1.25rem;
+    font-size: 18px;
     font-weight: bold;
     color: #3b82f6;
+    margin-bottom: 15px;
 }
 
-.no-products {
-    text-align: center;
-    padding: 3rem;
-    background-color: #1e1e1e;
-    border-radius: 8px;
-}
-
-.create-product-button {
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: background-color 0.2s;
-}
-
-.create-product-button:hover {
-    background-color: #2563eb;
-}
-
-.loading {
-    text-align: center;
-    padding: 2rem;
-    color: #9ca3af;
-}
-
-.error-message {
-    background-color: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
-    padding: 1rem;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.profile-actions {
+.product-actions {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 2rem;
+    gap: 10px;
 }
 
 .edit-button {
+    width: 100%;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
     background-color: #3b82f6;
     color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
     transition: background-color 0.2s;
 }
 
 .edit-button:hover {
+    background-color: #2563eb;
+}
+
+/* Loading State */
+.loading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #2d2d2d;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.no-products {
+    text-align: center;
+    padding: 40px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.no-products h2 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.no-products p {
+    color: #9ca3af;
+    margin-bottom: 20px;
+}
+
+.create-first-button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.create-first-button:hover {
+    background-color: #2563eb;
+}
+
+/* Error State */
+.error-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    color: #ef4444;
+    margin-top: 20px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #fff;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.close-button:hover {
+    color: #fff;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1rem;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.modal-error {
+    background-color: rgba(220, 38, 38, 0.1);
+    color: #ef4444;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2d2d2d;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.cancel-button,
+.save-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.cancel-button {
+    background-color: #2d2d2d;
+    color: #fff;
+}
+
+.save-button {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+.save-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cancel-button:hover {
+    background-color: #404040;
+}
+
+.save-button:hover:not(:disabled) {
     background-color: #2563eb;
 }
