@@ -37,7 +37,8 @@
     transition: background-color 0.2s;
 }
 
-.menu ul li:hover, .menu ul li.active {
+.menu ul li:hover,
+.menu ul li.active {
     background-color: #2d2d2d;
 }
 
@@ -217,7 +218,9 @@
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Empty State */

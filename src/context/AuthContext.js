@@ -40,8 +40,8 @@ export const AuthProvider = ({ children }) => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/${type}/me`, {
                     headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+                        Authorization: `Bearer ${token}`,
+                    },
                 });
 
                 if (response.ok) {
@@ -77,7 +77,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider 
+        <AuthContext.Provider
             value={{
                 user,
                 userType,
@@ -86,7 +86,7 @@ export const AuthProvider = ({ children }) => {
                 logout: handleLogout,
                 isAuthenticated: !!user,
                 isSeller: userType === 'seller',
-                isBuyer: userType === 'buyer'
+                isBuyer: userType === 'buyer',
             }}
         >
             {!loading && children}

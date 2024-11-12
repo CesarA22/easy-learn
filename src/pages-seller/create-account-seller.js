@@ -10,26 +10,32 @@ function CreateAccountSeller() {
         cpf: '',
         phone: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
     });
     const [error, setError] = useState('');
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
+        setFormData((prev) => ({
             ...prev,
-            [name]: value
+            [name]: value,
         }));
     };
 
     const validatePassword = () => {
         const conditions = [
             { text: 'Pelo menos 8 caracteres', valid: formData.password.length >= 8 },
-            { text: 'Pelo menos 1 caractere especial', valid: /[!@#$%^&*]/.test(formData.password) },
+            {
+                text: 'Pelo menos 1 caractere especial',
+                valid: /[!@#$%^&*]/.test(formData.password),
+            },
             { text: 'Pelo menos 1 número', valid: /\d/.test(formData.password) },
             { text: 'Pelo menos 1 letra minúscula', valid: /[a-z]/.test(formData.password) },
             { text: 'Pelo menos 1 letra maiúscula', valid: /[A-Z]/.test(formData.password) },
-            { text: 'As senhas digitadas conferem', valid: formData.password === formData.confirmPassword },
+            {
+                text: 'As senhas digitadas conferem',
+                valid: formData.password === formData.confirmPassword,
+            },
         ];
 
         return conditions;
@@ -51,7 +57,7 @@ function CreateAccountSeller() {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/seller/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData),
             });
 
             const data = await response.json();
@@ -134,7 +140,8 @@ function CreateAccountSeller() {
                 </form>
                 <div className="login-link">
                     <p>
-                        Já tem uma conta? <span onClick={() => navigate('/login-seller')}>Faça login</span>
+                        Já tem uma conta?{' '}
+                        <span onClick={() => navigate('/login-seller')}>Faça login</span>
                     </p>
                 </div>
             </div>
