@@ -29,6 +29,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .produtos-disponiveis__header__text {
@@ -39,15 +40,116 @@ body {
 
 .produtos-disponiveis__header__text h2 {
     font-size: 20px;
-    line-height: 5px;
+    margin: 0;
+    line-height: 1.5;
 }
 
 .produtos-disponiveis__header__text span {
     font-size: 16px;
     font-weight: lighter;
+    color: #b4b4b4;
 }
 
 .produtos-disponiveis__header__filters {
     display: flex;
-    gap: 16px;
+    gap: 20px;
+    padding: 16px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    align-items: center;
+}
+
+.produtos-disponiveis__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.select-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.select-container label {
+    color: #b4b4b4;
+    font-size: 14px;
+}
+
+.select-input {
+    background: #363636;
+    border: 1px solid #4a4a4a;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    min-width: 150px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.select-input:focus {
+    outline: none;
+    border-color: #5483fc;
+}
+
+.select-input option {
+    background-color: #363636;
+    color: white;
+    padding: 8px;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 20px;
+    color: #b4b4b4;
+}
+
+.error-message {
+    text-align: center;
+    padding: 20px;
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 8px;
+}
+
+.no-products-message {
+    text-align: center;
+    padding: 40px;
+    color: #b4b4b4;
+    background: #1e1e1e;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .produtos-disponiveis__header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .produtos-disponiveis__header__filters {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .select-container {
+        width: 100%;
+    }
+
+    .select-input {
+        width: 100%;
+    }
+
+    .produtos-disponiveis__list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .produtos-disponiveis__list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
 }

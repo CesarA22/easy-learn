@@ -1,27 +1,34 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
+import { CartButton, ShoppingCart } from './components/shopping-cart';
 
-import AvailableProducts from './pages-buyer/available-products.js';
-import BoughtProducts from './pages-buyer/bought-products.js';
-import ConsumeProduct from './pages-buyer/consume-product.js';
-import CreateAccountBuyer from './pages-buyer/create-account-buyer.js';
-import LoginBuyer from './pages-buyer/login-buyer.js';
-import UserScreenBuyer from './pages-buyer/user-screen-buyer.js';
-import BuyProduct from './pages-buyer/buy-product.js';
-import PurchaseConfirmation from './pages-buyer/purchase-confirmation.js';
-import VerifiedPayment from './pages-buyer/verified-payment.js';
+// Buyer Pages
+import AvailableProducts from './pages-buyer/available-products';
+import BoughtProducts from './pages-buyer/bought-products';
+import ConsumeProduct from './pages-buyer/consume-product';
+import CreateAccountBuyer from './pages-buyer/create-account-buyer';
+import LoginBuyer from './pages-buyer/login-buyer';
+import UserScreenBuyer from './pages-buyer/user-screen-buyer';
+import BuyProduct from './pages-buyer/buy-product';
+import PurchaseConfirmation from './pages-buyer/purchase-confirmation';
+import VerifiedPayment from './pages-buyer/verified-payment';
 
-import CreateAccountSeller from './pages-seller/create-account-seller.js';
-import CreateProduct from './pages-seller/create-product.js';
-import Dashboard from './pages-seller/dashboard.js';
-import LandingPage from './pages-seller/landing-page.js';
-import LoginSeller from './pages-seller/login-seller.js';
-import ProductDetails from './pages-seller/product-details.js';
-import Products from './pages-seller/products.js';
-import UserScreenSeller from './pages-seller/user-screen-seller.js';
+// Seller Pages
+import CreateAccountSeller from './pages-seller/create-account-seller';
+import CreateProduct from './pages-seller/create-product';
+import Dashboard from './pages-seller/dashboard';
+import LandingPage from './pages-seller/landing-page';
+import LoginSeller from './pages-seller/login-seller';
+import ProductDetails from './pages-seller/product-details';
+import Products from './pages-seller/products';
+import UserScreenSeller from './pages-seller/user-screen-seller';
 
+// Styles
 import './index.css';
 
+// Buyer Styles
 import './styles-buyer/available-products.css';
 import './styles-buyer/bought-products.css';
 import './styles-buyer/consume-product.css';
@@ -32,6 +39,7 @@ import './styles-buyer/buy-product.css';
 import './styles-buyer/purchase-confirmation.css';
 import './styles-buyer/verified-payment.css';
 
+// Seller Styles
 import './styles-seller/create-account-seller.css';
 import './styles-seller/create-product.css';
 import './styles-seller/dashboard.css';
@@ -42,30 +50,61 @@ import './styles-seller/products.css';
 import './styles-seller/user-screen-seller.css';
 
 function App() {
+    const buyerPages = [
+        '/available-products',
+        '/bought-products',
+        '/consume-product',
+        '/user-screen-buyer',
+        '/buy-product',
+        '/purchase-confirmation',
+        '/verified-payment'
+    ];
+
+    const isBuyerPage = () => {
+        return buyerPages.some(page => 
+            window.location.pathname.startsWith(page) || 
+            window.location.pathname.match(/\/consume-product\/\d+/)
+        );
+    };
+
     return (
-        <div className="App">
-            <Routes>
-                <Route path="/" element={<LandingPage />} />
+        <AuthProvider>
+            <CartProvider>
+                <div className="App">
+                    <Routes>
+                        <Route path="/" element={<LandingPage />} />
 
-                <Route path="/available-products" element={<AvailableProducts />} />
-                <Route path="/bought-products" element={<BoughtProducts />} />
-                <Route path="/consume-product" element={<ConsumeProduct />} />
-                <Route path="/create-account-buyer" element={<CreateAccountBuyer />} />
-                <Route path="/login-buyer" element={<LoginBuyer />} />
-                <Route path="/user-screen-buyer" element={<UserScreenBuyer />} />
-                <Route path="/buy-product" element={<BuyProduct />} />
-                <Route path="/purchase-confirmation" element={<PurchaseConfirmation />} />
-                <Route path="/verified-payment" element={<VerifiedPayment />} />
+                        {/* Buyer Routes */}
+                        <Route path="/available-products" element={<AvailableProducts />} />
+                        <Route path="/bought-products" element={<BoughtProducts />} />
+                        <Route path="/consume-product/:id" element={<ConsumeProduct />} />
+                        <Route path="/create-account-buyer" element={<CreateAccountBuyer />} />
+                        <Route path="/login-buyer" element={<LoginBuyer />} />
+                        <Route path="/user-screen-buyer" element={<UserScreenBuyer />} />
+                        <Route path="/buy-product" element={<BuyProduct />} />
+                        <Route path="/purchase-confirmation" element={<PurchaseConfirmation />} />
+                        <Route path="/verified-payment" element={<VerifiedPayment />} />
 
-                <Route path="/create-account-seller" element={<CreateAccountSeller />} />
-                <Route path="/create-product" element={<CreateProduct />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/login-seller" element={<LoginSeller />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/products/:id" element={<ProductDetails />} />
-                <Route path="/user-screen-seller" element={<UserScreenSeller />} />
-            </Routes>
-        </div>
+                        {/* Seller Routes */}
+                        <Route path="/create-account-seller" element={<CreateAccountSeller />} />
+                        <Route path="/create-product" element={<CreateProduct />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/login-seller" element={<LoginSeller />} />
+                        <Route path="/products" element={<Products />} />
+                        <Route path="/products/:id" element={<ProductDetails />} />
+                        <Route path="/user-screen-seller" element={<UserScreenSeller />} />
+                    </Routes>
+
+                    {/* Render cart components only on buyer pages */}
+                    {isBuyerPage() && (
+                        <>
+                            <CartButton />
+                            <ShoppingCart />
+                        </>
+                    )}
+                </div>
+            </CartProvider>
+        </AuthProvider>
     );
 }
 

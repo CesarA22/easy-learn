@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 export function Product({ product }) {
     const navigate = useNavigate();
 
-    // Função para formatar o preço
     const formatPrice = (price) => {
         return new Intl.NumberFormat('pt-BR', {
             style: 'currency',
@@ -12,20 +11,22 @@ export function Product({ product }) {
         }).format(price);
     };
 
+    const handleClick = () => {
+        navigate(`/consume-product/${product.id}`);
+    };
+
     return (
-        <div className="product-card" onClick={() => navigate(product.url)}>
+        <div className="product-card" onClick={handleClick}>
             <div
                 className="product-card__img"
                 style={{
                     backgroundImage: product.image
                         ? `url(${process.env.REACT_APP_BACKEND_URL}/images/${product.image})`
                         : 'none',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
                 }}
             />
             <div className="product-card__content">
-                <h2>{product.name}</h2>
+                <h2>{product.name || product.title}</h2>
                 <div>
                     <div className="product-card__categories">
                         {product.categories.map((category, index) => (
