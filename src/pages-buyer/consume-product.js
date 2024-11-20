@@ -21,14 +21,14 @@ function ConsumeProduct() {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('Produto não encontrado');
                 }
-                
+
                 const data = await response.json();
-                const foundProduct = data.products.find(p => p.id === parseInt(id));
-                
+                const foundProduct = data.products.find((p) => p.id === parseInt(id));
+
                 if (!foundProduct) {
                     throw new Error('Produto não encontrado');
                 }
@@ -89,10 +89,7 @@ function ConsumeProduct() {
             <Sidebar />
             <main className="consume-product__container">
                 <header className="product-header">
-                    <button 
-                        onClick={() => navigate('/available-products')}
-                        className="back-button"
-                    >
+                    <button onClick={() => navigate('/available-products')} className="back-button">
                         <ChevronLeft size={24} />
                         Voltar
                     </button>
@@ -100,15 +97,15 @@ function ConsumeProduct() {
                 </header>
 
                 <div className="product-content">
-                    <div 
+                    <div
                         className="product-image"
                         style={{
                             backgroundImage: product.image
                                 ? `url(${process.env.REACT_APP_BACKEND_URL}/images/${product.image})`
-                                : 'none'
+                                : 'none',
                         }}
                     />
-                    
+
                     <div className="product-info-container">
                         <div className="product-header-info">
                             <h2>{product.title}</h2>
@@ -118,7 +115,7 @@ function ConsumeProduct() {
                         <div className="product-price">
                             {new Intl.NumberFormat('pt-BR', {
                                 style: 'currency',
-                                currency: 'BRL'
+                                currency: 'BRL',
                             }).format(product.price)}
                         </div>
 
@@ -133,17 +130,11 @@ function ConsumeProduct() {
                         </div>
 
                         <div className="product-actions">
-                            <button 
-                                onClick={handleAddToCart}
-                                className="add-to-cart-button"
-                            >
+                            <button onClick={handleAddToCart} className="add-to-cart-button">
                                 <ShoppingBag size={20} />
                                 Adicionar ao Carrinho
                             </button>
-                            <button 
-                                onClick={handleBuyNow}
-                                className="buy-now-button"
-                            >
+                            <button onClick={handleBuyNow} className="buy-now-button">
                                 Comprar Agora
                             </button>
                         </div>

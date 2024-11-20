@@ -153,7 +153,7 @@ const EditModal = ({ product, onClose, onSave }) => {
 
 const ProductCard = ({ product, onEdit }) => {
     const [imageError, setImageError] = useState(false);
-    
+
     const getImageUrl = (imageName) => {
         if (!imageName) return null;
         // Alterando o caminho para acessar diretamente a pasta public
@@ -195,7 +195,7 @@ const ProductCard = ({ product, onEdit }) => {
                     }).format(product.price)}
                 </div>
                 <div className="product-actions">
-                    <button 
+                    <button
                         className="edit-button"
                         onClick={(e) => {
                             e.preventDefault();
