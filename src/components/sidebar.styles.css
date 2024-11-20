@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100vh;
 }
 
 .sidebar__menu ul {
@@ -15,6 +16,13 @@
 .sidebar__menu ul li {
     margin: 10px 0;
     cursor: pointer;
+    padding: 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.sidebar__menu ul li:hover {
+    background-color: #363636;
 }
 
 .sidebar__settings {
@@ -23,4 +31,36 @@
 
 .sidebar__settings p {
     cursor: pointer;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.sidebar__settings p:hover {
+    background-color: #363636;
+}
+
+.cart-item {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cart-item-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.cart-badge {
+    position: absolute;
+    right: 0;
+    background-color: #5483fc;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
 }

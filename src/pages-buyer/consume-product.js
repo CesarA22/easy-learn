@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Sidebar } from '../components/sidebar.js';
+import { SlidingCart } from '../components/sliding-cart.js';
 import { useCart } from '../context/CartContext';
 import { ChevronLeft, ShoppingBag } from 'lucide-react';
-import '../styles-buyer/consume-product.css';
 
 function ConsumeProduct() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const { addToCart } = useCart();
+    const { addToCart, setIsCartOpen } = useCart();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -47,21 +47,27 @@ function ConsumeProduct() {
 
     const handleAddToCart = () => {
         if (product) {
-            addToCart(product);
+            addToCart({
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                image: product.image,
+                quantity: 1
+            });
+            setIsCartOpen(true); // Abre o carrinho ao adicionar um item
         }
     };
 
     const handleBuyNow = () => {
-        if (product) {
-            addToCart(product);
-            navigate('/purchase-confirmation');
-        }
+        handleAddToCart();
+        navigate('/purchase-confirmation');
     };
 
     if (loading) {
         return (
             <div className="consume-product">
                 <Sidebar />
+                <SlidingCart />
                 <main className="consume-product__container">
                     <div className="loading-spinner">Carregando...</div>
                 </main>
@@ -73,6 +79,7 @@ function ConsumeProduct() {
         return (
             <div className="consume-product">
                 <Sidebar />
+                <SlidingCart />
                 <main className="consume-product__container">
                     <div className="error-message">{error}</div>
                 </main>
@@ -87,6 +94,7 @@ function ConsumeProduct() {
     return (
         <div className="consume-product">
             <Sidebar />
+            <SlidingCart />
             <main className="consume-product__container">
                 <header className="product-header">
                     <button onClick={() => navigate('/available-products')} className="back-button">

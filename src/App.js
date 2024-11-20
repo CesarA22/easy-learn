@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { AuthProvider } from './context/AuthContext.js';
 import { CartProvider } from './context/CartContext.js';
+import { SlidingCart } from './components/sliding-cart.js';
 
 import { CartButton, ShoppingCart } from './components/shopping-cart.js';
 
@@ -99,6 +100,9 @@ function App() {
                             <CartButton />
                             <ShoppingCart />
                         </>
+                    )}
+                    {isBuyerPage() && window.location.pathname !== '/purchase-confirmation' && (
+                        <SlidingCart />
                     )}
                 </div>
             </CartProvider>

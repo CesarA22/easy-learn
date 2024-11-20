@@ -4,6 +4,7 @@ import '../styles-buyer/available-products.css';
 import { AuthContext } from '../context/AuthContext.js';
 import { Sidebar } from '../components/sidebar.js';
 import { Product } from '../components/product-card.js';
+import { SlidingCart } from '../components/sliding-cart.js';
 
 function AvailableProducts() {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ function AvailableProducts() {
     const [error, setError] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState('todos');
     const [priceOrder, setPriceOrder] = useState('sem ordem');
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState(['todos']);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -35,7 +36,6 @@ function AvailableProducts() {
 
                 const data = await response.json();
 
-                // Transformar os dados para corresponder ao formato esperado pelo componente Product
                 const formattedProducts = data.products.map((product) => ({
                     id: product.id,
                     name: product.title,
@@ -51,7 +51,6 @@ function AvailableProducts() {
 
                 setProducts(formattedProducts);
 
-                // Extrair categorias únicas dos produtos
                 const uniqueCategories = ['todos'];
                 const categorySet = new Set(data.products.map((product) => product.category.name));
                 uniqueCategories.push(...categorySet);
@@ -85,6 +84,7 @@ function AvailableProducts() {
         return (
             <div className="produtos-disponiveis">
                 <Sidebar />
+                <SlidingCart />
                 <main className="produtos-disponiveis__container">
                     <div className="loading-message">Carregando produtos...</div>
                 </main>
@@ -96,6 +96,7 @@ function AvailableProducts() {
         return (
             <div className="produtos-disponiveis">
                 <Sidebar />
+                <SlidingCart />
                 <main className="produtos-disponiveis__container">
                     <div className="error-message">{error}</div>
                 </main>
@@ -106,6 +107,7 @@ function AvailableProducts() {
     return (
         <div className="produtos-disponiveis">
             <Sidebar />
+            <SlidingCart />
             <main className="produtos-disponiveis__container">
                 <header>
                     <h1 className="produtos-disponiveis__welcome">

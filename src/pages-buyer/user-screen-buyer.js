@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles-buyer/user-screen-buyer.css';
 import { AuthContext } from '../context/AuthContext';
+import { Sidebar } from '../components/sidebar';
+import { SlidingCart } from '../components/sliding-cart';
 
 function UserScreenBuyer() {
     const navigate = useNavigate();
@@ -50,12 +52,8 @@ function UserScreenBuyer() {
     if (loading) {
         return (
             <div className="user-screen-container">
-                <aside className="sidebar">
-                    <div className="logo">Easy Learn</div>
-                    <div className="settings">
-                        <p>Loading...</p>
-                    </div>
-                </aside>
+                <Sidebar />
+                <SlidingCart />
                 <main className="main-content">
                     <div className="loading">Loading user data...</div>
                 </main>
@@ -66,12 +64,8 @@ function UserScreenBuyer() {
     if (error) {
         return (
             <div className="user-screen-container">
-                <aside className="sidebar">
-                    <div className="logo">Easy Learn</div>
-                    <div className="settings">
-                        <p>Error</p>
-                    </div>
-                </aside>
+                <Sidebar />
+                <SlidingCart />
                 <main className="main-content">
                     <div className="error">{error}</div>
                 </main>
@@ -81,25 +75,8 @@ function UserScreenBuyer() {
 
     return (
         <div className="user-screen-container">
-            <aside className="sidebar">
-                <div className="logo" onClick={() => navigate('/available-products')}>
-                    Easy Learn
-                </div>
-                <nav className="menu">
-                    <ul>
-                        <li onClick={() => navigate('/available-products')}>
-                            Produtos disponíveis
-                        </li>
-                        <li onClick={() => navigate('/bought-products')}>Produtos Comprados</li>
-                    </ul>
-                </nav>
-                <div className="settings">
-                    <p>Configurações</p>
-                    <p onClick={() => navigate('/user-screen-buyer')}>
-                        {userData?.name || 'Nome do perfil'}
-                    </p>
-                </div>
-            </aside>
+            <Sidebar />
+            <SlidingCart />
             <main className="main-content">
                 <header>
                     <h1>Configurações</h1>
@@ -134,50 +111,36 @@ function UserScreenBuyer() {
                                 <strong>Status da Conta:</strong>{' '}
                                 <span className="verified">Dados Verificados</span>
                             </p>
-                            {userData?.products && (
-                                <p>
-                                    <strong>Produtos Comprados:</strong> {userData.products.length}
-                                </p>
-                            )}
                         </div>
                     </div>
                     <button className="edit-button">Editar</button>
                 </section>
 
-                <section className="purchases">
+                <section className="purchase-history">
                     <h2>Histórico de Compras</h2>
-                    <div className="purchases-content">
-                        {userData?.products && userData.products.length > 0 ? (
-                            <div className="purchases-stats">
-                                <div className="purchases-item">
-                                    <p>
-                                        <strong>Total de Produtos Comprados</strong>
-                                    </p>
-                                    <p>{userData.products.length} produtos</p>
-                                </div>
-                                <button
-                                    className="view-products-button"
-                                    onClick={() => navigate('/bought-products')}
-                                >
-                                    Ver Produtos Comprados
-                                </button>
+                    <div className="history-content">
+                        <div className="history-stats">
+                            <div className="history-stat">
+                                <span>Total de Compras</span>
+                                <strong>{userData?.products?.length || 0}</strong>
                             </div>
-                        ) : (
-                            <div className="purchases-item">
-                                <p>
-                                    <strong>Nenhum produto comprado</strong>
-                                </p>
-                                <p>Explore nossos produtos disponíveis!</p>
-                                <button
-                                    className="view-products-button"
-                                    onClick={() => navigate('/available-products')}
-                                >
-                                    Ver Produtos Disponíveis
-                                </button>
+                            <div className="history-stat">
+                                <span>Último Pedido</span>
+                                <strong>22/03/2024</strong>
                             </div>
-                        )}
+                            <div className="history-stat">
+                                <span>Status</span>
+                                <strong className="status-active">Ativo</strong>
+                            </div>
+                        </div>
+
+                        <div className="history-list">
+                            {/* Aqui você pode adicionar uma lista dos últimos pedidos quando implementar */}
+                            <p className="history-empty">Histórico de compras em breve...</p>
+                        </div>
                     </div>
                 </section>
+
                 <button className="logout-button" onClick={handleLogout}>
                     Logout
                 </button>

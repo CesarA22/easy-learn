@@ -1,61 +1,88 @@
-import { Sidebar } from '../components/sidebar.js';
-import { useNavigate } from 'react-router-dom';
-import { LuChevronLeftCircle as LeftChevron } from 'react-icons/lu';
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { ChevronLeft, CheckCircle } from 'lucide-react';
 import { Logo } from '../components/logo';
+import '../styles-buyer/verified-payment.css';
 
 export function VerifiedPayment() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { orderData, items, total } = location.state || {};
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        }).format(price);
+    };
+
+    if (!orderData) {
+        navigate('/available-products');
+        return null;
+    }
+
     return (
         <div className="verified-payment">
             <main className="verified-payment__container">
                 <header>
-                    <h1 className="verified-payment__header">
-                        <button onClick={() => navigate('/available-products')}>
-                            <LeftChevron />
+                    <div className="verified-payment__header">
+                        <button onClick={() => navigate('/available-products')} className="back-button">
+                            <ChevronLeft size={24} />
+                            Voltar
                         </button>
-                        Status Pagamento:
-                    </h1>
-                    <Logo />
+                        <Logo />
+                    </div>
                 </header>
                 <section className="verified-payment__content">
                     <div className="verified-payment__status">
-                        <span>status:</span>
-                        <div>Pagamento verificado</div>
+                        <CheckCircle className="success-icon" size={48} />
+                        <h2>Pagamento Confirmado!</h2>
+                        <p>Sua compra foi realizada com sucesso</p>
                     </div>
-                    <div className="verified-payment__hr" />
-                    <h2>Produto Selecionado:</h2>
-                    {/* product card*/}
-                    <div className="verified-payment__product">
-                        <div className="verified-payment__product__img" />
-                        <div>
-                            <h3>Nome do Produto</h3>
-                            <div className="verified-payment__categories">
-                                <div>Curso</div>
-                                <div>Educacao</div>
-                                <div>Financa</div>
-                            </div>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text
-                                ever since the 1500s.
-                            </p>
+
+                    <div className="verified-payment__order">
+                        <h3>Detalhes do Pedido</h3>
+                        <div className="order-items">
+                            {items?.map((item) => (
+                                <div key={item.id} className="order-item">
+                                    <div className="item-image">
+                                        {item.image && (
+                                            <img
+                                                src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.image}`}
+                                                alt={item.title}
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="item-details">
+                                        <h4>{item.title}</h4>
+                                        <p className="item-quantity">Quantidade: {item.quantity}</p>
+                                        <p className="item-price">{formatPrice(item.price * item.quantity)}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="order-total">
+                            <span>Total Pago:</span>
+                            <span className="total-amount">{formatPrice(total)}</span>
                         </div>
                     </div>
-                    <div
-                        className="purchase-confirmation__form__price"
-                        style={{ marginTop: '20px' }}
-                    >
-                        <label>Preço do produto:</label>
-                        <div>R$ 150.40</div>
+
+                    <div className="verified-payment__actions">
+                        <button
+                            onClick={() => navigate('/bought-products')}
+                            className="primary-button"
+                        >
+                            Ver Meus Produtos
+                        </button>
+                        <button
+                            onClick={() => navigate('/available-products')}
+                            className="secondary-button"
+                        >
+                            Continuar Comprando
+                        </button>
                     </div>
                 </section>
-                <button
-                    type="button"
-                    onClick={() => navigate('/consume-product')}
-                    className="verified-payment__access-product"
-                >
-                    Acessar Produto
-                </button>
             </main>
         </div>
     );

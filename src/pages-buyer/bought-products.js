@@ -3,6 +3,7 @@ import '../styles-buyer/bought-products.css';
 import { AuthContext } from '../context/AuthContext.js';
 import { Sidebar } from '../components/sidebar.js';
 import { Product } from '../components/product-card.js';
+import { SlidingCart } from '../components/sliding-cart.js';
 import productService from '../services/productService';
 
 function BoughtProducts() {
@@ -21,7 +22,6 @@ function BoughtProducts() {
                 const boughtProducts = await productService.getBoughtProducts(user.id);
                 setProducts(boughtProducts);
 
-                // Extrair categorias únicas dos produtos comprados
                 const uniqueCategories = new Set(
                     boughtProducts.flatMap((product) => product.categories),
                 );
@@ -44,6 +44,7 @@ function BoughtProducts() {
         return (
             <div className="produtos-comprados">
                 <Sidebar />
+                <SlidingCart />
                 <main className="produtos-comprados__container">
                     <p>Carregando produtos...</p>
                 </main>
@@ -55,6 +56,7 @@ function BoughtProducts() {
         return (
             <div className="produtos-comprados">
                 <Sidebar />
+                <SlidingCart />
                 <main className="produtos-comprados__container">
                     <p className="error-message">{error}</p>
                 </main>
@@ -65,6 +67,7 @@ function BoughtProducts() {
     return (
         <div className="produtos-comprados">
             <Sidebar />
+            <SlidingCart />
             <main className="produtos-comprados__container">
                 <header>
                     <h1 className="produtos-comprados__welcome">

@@ -1,66 +1,160 @@
-import { Sidebar } from '../components/sidebar.js';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LuChevronLeftCircle as LeftChevron } from 'react-icons/lu';
-import { Logo } from '../components/logo';
+import { ChevronLeft, Copy, Timer } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { AuthContext } from '../context/AuthContext';
+import '../styles-buyer/purchase-confirmation.css';
 
 export function PurchaseConfirmation() {
     const navigate = useNavigate();
+    const { cartItems, getTotal, clearCart } = useCart();
+    const { user } = useContext(AuthContext);
+    const [isPixModalOpen, setIsPixModalOpen] = useState(false);
+    const [isProcessing, setIsProcessing] = useState(false);
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        }).format(price);
+    };
+
+    const handlePayment = () => {
+        setIsPixModalOpen(true);
+    };
+
+    const handleConfirmPayment = async () => {
+        try {
+            setIsProcessing(true);
+            
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/buyer/checkout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({
+                    buyerId: user.id
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao processar o checkout');
+            }
+
+            const orderData = await response.json();
+            
+            clearCart();
+            
+            navigate('/verified-payment', { 
+                state: { 
+                    orderData,
+                    items: cartItems,
+                    total: getTotal()
+                }
+            });
+
+        } catch (error) {
+            console.error('Erro no checkout:', error);
+            alert('Erro ao processar o pagamento. Tente novamente.');
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
     return (
         <div className="purchase-confirmation">
             <main className="purchase-confirmation__container">
-                <header>
-                    <h1 className="purchase-confirmation__header">
-                        <button onClick={() => navigate('/available-products')}>
-                            <LeftChevron />
-                        </button>
-                        Pagamento Online:
-                    </h1>
-                    <Logo />
+                <header className="confirmation-header">
+                    <button onClick={() => navigate(-1)} className="back-button">
+                        <ChevronLeft size={24} />
+                        Voltar
+                    </button>
+                    <h1>Confirmação de Compra</h1>
                 </header>
-                <section className="purchase-confirmation__content">
-                    <h2>Produto Selecionado:</h2>
-                    {/* product card*/}
-                    <div className="purchase-confirmation__product">
-                        <div className="purchase-confirmation__product__img" />
-                        <div>
-                            <h3>Nome do Produto</h3>
-                            <div className="purchase-confirmation__categories">
-                                <div>Curso</div>
-                                <div>Educacao</div>
-                                <div>Financa</div>
+
+                <div className="confirmation-content">
+                    <section className="order-summary">
+                        <h2>Resumo do Pedido</h2>
+                        <div className="items-list">
+                            {cartItems.map((item) => (
+                                <div key={item.id} className="order-item">
+                                    <div className="item-image">
+                                        {item.image && (
+                                            <img
+                                                src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.image}`}
+                                                alt={item.title}
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="item-info">
+                                        <h3>{item.title}</h3>
+                                        <p className="item-quantity">Quantidade: {item.quantity}</p>
+                                        <p className="item-price">
+                                            {formatPrice(item.price * item.quantity)}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="order-total">
+                            <div className="total-row">
+                                <span>Subtotal:</span>
+                                <span>{formatPrice(getTotal())}</span>
                             </div>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text
-                                ever since the 1500s.
-                            </p>
+                            <div className="total-row final">
+                                <span>Total:</span>
+                                <span>{formatPrice(getTotal())}</span>
+                            </div>
                         </div>
-                    </div>
-                    <form className="purchase-confirmation__form">
-                        <div className="purchase-confirmation__form__price">
-                            <label>Preço do produto:</label>
-                            <div>R$ 150.40</div>
-                        </div>
-                        <div className="purchase-confirmation__form">
-                            <label htmlFor="num-card">Numero do cartao:</label>
-                            <input type="text" id="num-card" name="num-card" />
-                        </div>
-                        <div className="purchase-confirmation__form">
-                            <label htmlFor="name">Nome do titular:</label>
-                            <input type="text" id="name" name="name" />
-                        </div>
-                        <div className="purchase-confirmation__form">
-                            <label htmlFor="data">Data</label>
-                            <input type="text" id="data" name="data" />
-                        </div>
-                        <div className="purchase-confirmation__form">
-                            <label htmlFor="cvv">CVV</label>
-                            <input type="text" id="cvv" name="cvv" />
-                        </div>
-                        <button onClick={() => navigate('/verified-payment')}>Comprar</button>
-                    </form>
-                </section>
+                    </section>
+
+                    <section className="payment-section">
+                        <h2>Pagamento via PIX</h2>
+                        <p>Para concluir sua compra, realize o pagamento via PIX.</p>
+                        <button onClick={handlePayment} className="pay-button">
+                            Gerar PIX
+                        </button>
+                    </section>
+                </div>
             </main>
+
+            {isPixModalOpen && (
+                <div className="pix-modal-overlay">
+                    <div className="pix-modal">
+                        <h2>Pagamento PIX</h2>
+                        <div className="pix-qr-container">
+                            <div className="pix-qr-placeholder">
+                                QR Code PIX
+                            </div>
+                        </div>
+                        <div className="pix-copy-section">
+                            <p>Código PIX:</p>
+                            <div className="pix-code">
+                                <span>00020126580014br.gov.bcb.pix0136123e4567-e89b-12d3</span>
+                                <button className="copy-button">
+                                    <Copy size={20} />
+                                </button>
+                            </div>
+                        </div>
+                        <div className="pix-timer">
+                            <Timer size={20} />
+                            <span>Expira em 10:00</span>
+                        </div>
+                        <button 
+                            onClick={handleConfirmPayment} 
+                            className="confirm-payment-button"
+                            disabled={isProcessing}
+                        >
+                            {isProcessing ? 'Processando...' : 'Simular Confirmação do Pagamento'}
+                        </button>
+                        <button onClick={() => setIsPixModalOpen(false)} className="close-button">
+                            Fechar
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

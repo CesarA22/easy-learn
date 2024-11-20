@@ -143,3 +143,52 @@ header h1 {
 .logout-button:hover {
     background-color: #cc0000;
 }
+
+.purchase-history {
+    background-color: #1e1e1e;
+    padding: 40px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.history-content {
+    margin-top: 20px;
+}
+
+.history-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.history-stat {
+    background-color: #2d2d2d;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-stat span {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.history-stat strong {
+    font-size: 1.25rem;
+    color: white;
+}
+
+.status-active {
+    color: #4CAF50 !important;
+}
+
+.history-empty {
+    text-align: center;
+    color: #999;
+    padding: 40px;
+    background-color: #2d2d2d;
+    border-radius: 8px;
+}
