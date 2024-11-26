@@ -16,6 +16,7 @@ import LoginBuyer from './pages-buyer/login-buyer.js';
 import PurchaseConfirmation from './pages-buyer/purchase-confirmation.js';
 import UserScreenBuyer from './pages-buyer/user-screen-buyer.js';
 import VerifiedPayment from './pages-buyer/verified-payment.js';
+import ViewBoughtProduct from './pages-buyer/view-bought-product';
 
 import CreateAccountSeller from './pages-seller/create-account-seller.js';
 import CreateProduct from './pages-seller/create-product.js';
@@ -83,6 +84,7 @@ function App() {
                         <Route path="/purchase-confirmation" element={<PurchaseConfirmation />} />
                         <Route path="/user-screen-buyer" element={<UserScreenBuyer />} />
                         <Route path="/verified-payment" element={<VerifiedPayment />} />
+                        <Route path="/product/:id" element={<ViewBoughtProduct />} />
 
                         {/* Seller Routes */}
                         <Route path="/create-account-seller" element={<CreateAccountSeller />} />
