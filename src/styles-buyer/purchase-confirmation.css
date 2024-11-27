@@ -213,6 +213,8 @@
     justify-content: center;
     color: #ff4d4d;
     margin: 1.5rem 0;
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
 .confirm-payment-button {
@@ -230,4 +232,43 @@
 
 .confirm-payment-button:hover {
     background-color: #4a75e0;
+}
+
+.confirmation-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #4caf50;
+    margin-top: 2rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.checkmark-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #4caf50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.checkmark {
+    width: 20px;
+    height: 10px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(-45deg);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
