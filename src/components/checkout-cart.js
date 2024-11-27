@@ -13,7 +13,9 @@ export const CheckoutCart = () => {
             <div className="checkout-cart-container">
                 <div className="checkout-cart-header">
                     <h2>Resumo do Pedido</h2>
-                    <span>({cartItems.length} {cartItems.length === 1 ? 'item' : 'itens'})</span>
+                    <span>
+                        ({cartItems.length} {cartItems.length === 1 ? 'item' : 'itens'})
+                    </span>
                 </div>
 
                 <div className="checkout-cart-items">
@@ -29,9 +31,7 @@ export const CheckoutCart = () => {
                             </div>
                             <div className="checkout-item-details">
                                 <h3>{item.title}</h3>
-                                <p className="checkout-item-price">
-                                    R$ {item.price.toFixed(2)}
-                                </p>
+                                <p className="checkout-item-price">R$ {item.price.toFixed(2)}</p>
                                 <div className="checkout-item-actions">
                                     <div className="checkout-quantity-controls">
                                         <button

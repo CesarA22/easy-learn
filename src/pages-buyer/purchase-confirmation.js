@@ -26,16 +26,16 @@ export function PurchaseConfirmation() {
     const handleConfirmPayment = async () => {
         try {
             setIsProcessing(true);
-            
+
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/buyer/checkout`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
                 body: JSON.stringify({
-                    buyerId: user.id
-                })
+                    buyerId: user.id,
+                }),
             });
 
             if (!response.ok) {
@@ -43,17 +43,16 @@ export function PurchaseConfirmation() {
             }
 
             const orderData = await response.json();
-            
+
             clearCart();
-            
-            navigate('/verified-payment', { 
-                state: { 
+
+            navigate('/verified-payment', {
+                state: {
                     orderData,
                     items: cartItems,
-                    total: getTotal()
-                }
+                    total: getTotal(),
+                },
             });
-
         } catch (error) {
             console.error('Erro no checkout:', error);
             alert('Erro ao processar o pagamento. Tente novamente.');
@@ -125,9 +124,7 @@ export function PurchaseConfirmation() {
                     <div className="pix-modal">
                         <h2>Pagamento PIX</h2>
                         <div className="pix-qr-container">
-                            <div className="pix-qr-placeholder">
-                                QR Code PIX
-                            </div>
+                            <div className="pix-qr-placeholder">QR Code PIX</div>
                         </div>
                         <div className="pix-copy-section">
                             <p>Código PIX:</p>
@@ -142,8 +139,8 @@ export function PurchaseConfirmation() {
                             <Timer size={20} />
                             <span>Expira em 10:00</span>
                         </div>
-                        <button 
-                            onClick={handleConfirmPayment} 
+                        <button
+                            onClick={handleConfirmPayment}
                             className="confirm-payment-button"
                             disabled={isProcessing}
                         >

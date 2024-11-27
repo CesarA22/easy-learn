@@ -16,11 +16,14 @@ function ViewBoughtProduct() {
         const fetchProduct = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
+                const response = await fetch(
+                    `${process.env.REACT_APP_BACKEND_URL}/products/${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
                     },
-                });
+                );
 
                 if (!response.ok) {
                     throw new Error('Produto não encontrado');
@@ -103,7 +106,7 @@ function ViewBoughtProduct() {
 
                 <div className="product-cover">
                     {product?.image && (
-                        <img 
+                        <img
                             src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.image}`}
                             alt={product.title}
                         />
@@ -136,8 +139,8 @@ function ViewBoughtProduct() {
                                         />
                                     </div>
                                 ) : null}
-                                
-                                <button 
+
+                                <button
                                     onClick={() => handleDownload(file.path[0])}
                                     className="download-button"
                                 >

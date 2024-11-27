@@ -26,20 +26,23 @@ export const CartProvider = ({ children }) => {
             }
 
             const token = localStorage.getItem('token');
-            
+
             // Primeiro, verificamos se já existe um carrinho para o usuário
-            const cartResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/buyer/cart/${user.id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
+            const cartResponse = await fetch(
+                `${process.env.REACT_APP_BACKEND_URL}/buyer/cart/${user.id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                 },
-            });
-            
+            );
+
             if (!cartResponse.ok) {
                 throw new Error('Erro ao acessar carrinho');
             }
 
             const cartData = await cartResponse.json();
-            
+
             // Adiciona o item ao carrinho no banco de dados
             await fetch(`${process.env.REACT_APP_BACKEND_URL}/buyer/cart/add`, {
                 method: 'POST',
@@ -49,7 +52,7 @@ export const CartProvider = ({ children }) => {
                 },
                 body: JSON.stringify({
                     productId: product.id,
-                    quantity: 1
+                    quantity: 1,
                 }),
             });
 
@@ -63,7 +66,7 @@ export const CartProvider = ({ children }) => {
                 }
                 return [...prevItems, { ...product, quantity: 1 }];
             });
-            
+
             setIsCartOpen(true);
         } catch (error) {
             console.error('Erro ao adicionar ao carrinho:', error);
@@ -76,7 +79,7 @@ export const CartProvider = ({ children }) => {
             if (!user) return;
 
             const token = localStorage.getItem('token');
-            
+
             await fetch(`${process.env.REACT_APP_BACKEND_URL}/buyer/cart/item/${productId}`, {
                 method: 'DELETE',
                 headers: {
@@ -100,7 +103,7 @@ export const CartProvider = ({ children }) => {
             }
 
             const token = localStorage.getItem('token');
-            
+
             await fetch(`${process.env.REACT_APP_BACKEND_URL}/buyer/cart/item/${productId}`, {
                 method: 'PUT',
                 headers: {
@@ -125,7 +128,7 @@ export const CartProvider = ({ children }) => {
             if (!user) return;
 
             const token = localStorage.getItem('token');
-            
+
             await fetch(`${process.env.REACT_APP_BACKEND_URL}/buyer/cart/clear`, {
                 method: 'DELETE',
                 headers: {
@@ -151,22 +154,25 @@ export const CartProvider = ({ children }) => {
             const token = localStorage.getItem('token');
 
             // 1. Criar a ordem
-            const orderResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/buyer/checkout`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
+            const orderResponse = await fetch(
+                `${process.env.REACT_APP_BACKEND_URL}/buyer/checkout`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({
+                        buyerId,
+                        items: cartItems.map((item) => ({
+                            productId: item.id,
+                            quantity: item.quantity,
+                            price: item.price,
+                        })),
+                        total: getTotal(),
+                    }),
                 },
-                body: JSON.stringify({
-                    buyerId,
-                    items: cartItems.map(item => ({
-                        productId: item.id,
-                        quantity: item.quantity,
-                        price: item.price
-                    })),
-                    total: getTotal()
-                }),
-            });
+            );
 
             if (!orderResponse.ok) {
                 const errorData = await orderResponse.json();
@@ -196,7 +202,7 @@ export const CartProvider = ({ children }) => {
                 updateQuantity,
                 clearCart,
                 getTotal,
-                processCheckout
+                processCheckout,
             }}
         >
             {children}

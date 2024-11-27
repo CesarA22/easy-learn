@@ -157,7 +157,7 @@ const ProductCard = ({ product, onEdit }) => {
     const getImageUrl = (imageName) => {
         if (!imageName) return null;
         // Alterando o caminho para acessar diretamente a pasta public
-        return `${process.env.REACT_APP_BACKEND_URL}/public/files/${imageName}`;
+        return `${process.env.REACT_APP_BACKEND_URL}/images/${imageName}`;
     };
 
     const handleImageError = () => {

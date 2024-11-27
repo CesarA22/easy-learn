@@ -52,7 +52,7 @@ function ConsumeProduct() {
                 title: product.title,
                 price: product.price,
                 image: product.image,
-                quantity: 1
+                quantity: 1,
             });
             setIsCartOpen(true); // Abre o carrinho ao adicionar um item
         }

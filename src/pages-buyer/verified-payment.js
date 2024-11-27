@@ -26,7 +26,10 @@ export function VerifiedPayment() {
             <main className="verified-payment__container">
                 <header>
                     <div className="verified-payment__header">
-                        <button onClick={() => navigate('/available-products')} className="back-button">
+                        <button
+                            onClick={() => navigate('/available-products')}
+                            className="back-button"
+                        >
                             <ChevronLeft size={24} />
                             Voltar
                         </button>
@@ -56,7 +59,9 @@ export function VerifiedPayment() {
                                     <div className="item-details">
                                         <h4>{item.title}</h4>
                                         <p className="item-quantity">Quantidade: {item.quantity}</p>
-                                        <p className="item-price">{formatPrice(item.price * item.quantity)}</p>
+                                        <p className="item-price">
+                                            {formatPrice(item.price * item.quantity)}
+                                        </p>
                                     </div>
                                 </div>
                             ))}

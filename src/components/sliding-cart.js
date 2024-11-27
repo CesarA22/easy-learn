@@ -16,12 +16,7 @@ export const SlidingCart = () => {
 
     return (
         <>
-            {isCartOpen && (
-                <div
-                    className="cart-overlay"
-                    onClick={() => setIsCartOpen(false)}
-                />
-            )}
+            {isCartOpen && <div className="cart-overlay" onClick={() => setIsCartOpen(false)} />}
 
             <div className={`sliding-cart ${isCartOpen ? 'open' : ''}`}>
                 <div className="cart-container">
@@ -30,19 +25,14 @@ export const SlidingCart = () => {
                             <ShoppingCart size={24} />
                             <h2>Carrinho</h2>
                         </div>
-                        <button
-                            onClick={() => setIsCartOpen(false)}
-                            className="close-button"
-                        >
+                        <button onClick={() => setIsCartOpen(false)} className="close-button">
                             <X size={20} />
                         </button>
                     </div>
 
                     <div className="cart-items">
                         {cartItems.length === 0 ? (
-                            <div className="empty-cart">
-                                Seu carrinho está vazio
-                            </div>
+                            <div className="empty-cart">Seu carrinho está vazio</div>
                         ) : (
                             <div className="items-container">
                                 {cartItems.map((item) => (
@@ -57,14 +47,15 @@ export const SlidingCart = () => {
                                         </div>
                                         <div className="item-details">
                                             <h3>{item.title}</h3>
-                                            <p className="item-price">
-                                                R$ {item.price.toFixed(2)}
-                                            </p>
+                                            <p className="item-price">R$ {item.price.toFixed(2)}</p>
                                             <div className="item-actions">
                                                 <div className="quantity-controls">
                                                     <button
                                                         onClick={() =>
-                                                            updateQuantity(item.id, item.quantity - 1)
+                                                            updateQuantity(
+                                                                item.id,
+                                                                item.quantity - 1,
+                                                            )
                                                         }
                                                     >
                                                         <Minus size={16} />
@@ -72,7 +63,10 @@ export const SlidingCart = () => {
                                                     <span>{item.quantity}</span>
                                                     <button
                                                         onClick={() =>
-                                                            updateQuantity(item.id, item.quantity + 1)
+                                                            updateQuantity(
+                                                                item.id,
+                                                                item.quantity + 1,
+                                                            )
                                                         }
                                                     >
                                                         <Plus size={16} />

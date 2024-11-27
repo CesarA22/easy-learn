@@ -39,7 +39,7 @@ function BoughtProducts() {
                         headers: {
                             Authorization: `Bearer ${token}`,
                         },
-                    }
+                    },
                 );
 
                 if (!response.ok) {
@@ -58,7 +58,7 @@ function BoughtProducts() {
                     // Verificar se order.items existe e é um array
                     if (!order.items || !Array.isArray(order.items)) return acc;
 
-                    const orderProducts = order.items.map(item => ({
+                    const orderProducts = order.items.map((item) => ({
                         id: item.product.id,
                         name: item.product.title, // Ajustado para 'name' para compatibilidade com o Product
                         title: item.product.title,
@@ -66,7 +66,7 @@ function BoughtProducts() {
                         price: item.product.price,
                         image: item.product.image,
                         categories: item.product.category ? [item.product.category.name] : [],
-                        purchaseDate: order.createdAt
+                        purchaseDate: order.createdAt,
                     }));
 
                     return [...acc, ...orderProducts];
@@ -76,19 +76,16 @@ function BoughtProducts() {
 
                 // Remover duplicatas mantendo apenas a compra mais recente
                 const uniqueProducts = Array.from(
-                    new Map(
-                        boughtProducts.map(item => [item.id, item])
-                    ).values()
+                    new Map(boughtProducts.map((item) => [item.id, item])).values(),
                 );
 
                 setProducts(uniqueProducts);
 
                 // Extrair categorias únicas
                 const allCategories = new Set(
-                    uniqueProducts.flatMap(product => product.categories || [])
+                    uniqueProducts.flatMap((product) => product.categories || []),
                 );
                 setCategories(['todos', ...Array.from(allCategories)]);
-
             } catch (err) {
                 console.error('Erro ao buscar produtos:', err);
                 setError('Erro ao carregar produtos comprados');
@@ -101,7 +98,7 @@ function BoughtProducts() {
     }, [user]);
 
     const filteredProducts = products.filter((product) =>
-        selectedCategory === 'todos' ? true : product.categories?.includes(selectedCategory)
+        selectedCategory === 'todos' ? true : product.categories?.includes(selectedCategory),
     );
 
     if (loading) {
@@ -163,7 +160,7 @@ function BoughtProducts() {
                     </div>
                 </section>
                 <div className="produtos-comprados__list">
-                {filteredProducts.length > 0 ? (
+                    {filteredProducts.length > 0 ? (
                         filteredProducts.map((product) => (
                             <div key={product.id} onClick={() => handleProductClick(product)}>
                                 <Product product={product} />
