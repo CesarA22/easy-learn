@@ -36,6 +36,7 @@ import './styles-buyer/login-buyer.css';
 import './styles-buyer/purchase-confirmation.css';
 import './styles-buyer/user-screen-buyer.css';
 import './styles-buyer/verified-payment.css';
+import './styles-buyer/view-bought-product.css';
 
 import './styles-seller/create-account-seller.css';
 import './styles-seller/create-product.css';
@@ -55,6 +56,7 @@ function App() {
         '/purchase-confirmation',
         '/user-screen-buyer',
         '/verified-payment',
+        '/view-bought-product',
     ];
 
     const isBuyerPage = () => {
@@ -82,7 +84,7 @@ function App() {
                         <Route path="/purchase-confirmation" element={<PurchaseConfirmation />} />
                         <Route path="/user-screen-buyer" element={<UserScreenBuyer />} />
                         <Route path="/verified-payment" element={<VerifiedPayment />} />
-                        <Route path="/product/:id" element={<ViewBoughtProduct />} />
+                        <Route path="/view-bought-product/:id" element={<ViewBoughtProduct />} />
 
                         {/* Seller Routes */}
                         <Route path="/create-account-seller" element={<CreateAccountSeller />} />
