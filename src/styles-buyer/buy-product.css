@@ -35,8 +35,6 @@ body {
     transform: translateY(4px);
 }
 
-/* product classNames */
-/* TODO: colocar em outro lugar */
 .product-content {
     background-color: #1e1e1e;
     padding: 20px;
@@ -92,8 +90,6 @@ body {
     color: #b2b2b2;
     margin-bottom: 10px;
 }
-
-/* .product-content__info p { } */
 
 .product-content__price {
     display: flex;

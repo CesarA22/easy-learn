@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext.js';
 import { useNavigate } from 'react-router-dom';
 import './sliding-cart.styles.css';
 

@@ -5,8 +5,6 @@ import { AuthProvider } from './context/AuthContext.js';
 import { CartProvider } from './context/CartContext.js';
 import { SlidingCart } from './components/sliding-cart.js';
 
-import { CartButton, ShoppingCart } from './components/shopping-cart.js';
-
 import AvailableProducts from './pages-buyer/available-products.js';
 import BoughtProducts from './pages-buyer/bought-products.js';
 import BuyProduct from './pages-buyer/buy-product.js';
@@ -16,7 +14,7 @@ import LoginBuyer from './pages-buyer/login-buyer.js';
 import PurchaseConfirmation from './pages-buyer/purchase-confirmation.js';
 import UserScreenBuyer from './pages-buyer/user-screen-buyer.js';
 import VerifiedPayment from './pages-buyer/verified-payment.js';
-import ViewBoughtProduct from './pages-buyer/view-bought-product';
+import ViewBoughtProduct from './pages-buyer/view-bought-product.js';
 
 import CreateAccountSeller from './pages-seller/create-account-seller.js';
 import CreateProduct from './pages-seller/create-product.js';
@@ -96,13 +94,6 @@ function App() {
                         <Route path="/user-screen-seller" element={<UserScreenSeller />} />
                     </Routes>
 
-                    {/* Render cart components only on buyer pages */}
-                    {isBuyerPage() && (
-                        <>
-                            <CartButton />
-                            <ShoppingCart />
-                        </>
-                    )}
                     {isBuyerPage() && window.location.pathname !== '/purchase-confirmation' && (
                         <SlidingCart />
                     )}

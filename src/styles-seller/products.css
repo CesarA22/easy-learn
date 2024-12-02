@@ -1,12 +1,9 @@
-/* products.css */
-/* Container Principal */
 .products-container {
     display: flex;
     min-height: 100vh;
     background-color: #1e1e1e;
 }
 
-/* Sidebar */
 .sidebar {
     width: 250px;
     background-color: #1e1e1e;
@@ -59,7 +56,6 @@
     border-radius: 4px;
 }
 
-/* Main Content */
 .main-content {
     flex: 1;
     padding: 20px;
@@ -79,7 +75,6 @@
     margin: 0;
 }
 
-/* Products Grid */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -87,10 +82,9 @@
     padding-top: 20px;
 }
 
-/* Product Card */
 .product-card {
     background-color: #2d2d2d;
-    border-radius: 8px;
+    border-radius: 20px;
     overflow: hidden;
     transition:
         transform 0.2s ease,
@@ -202,7 +196,6 @@
     }
 }
 
-/* Error States */
 .error-message {
     background-color: rgba(239, 68, 68, 0.1);
     color: #ef4444;
@@ -212,7 +205,6 @@
     text-align: center;
 }
 
-/* Add Product Button */
 .add-product-button {
     background-color: #3b82f6;
     color: white;
@@ -228,7 +220,6 @@
     background-color: #2563eb;
 }
 
-/* Empty State */
 .no-products {
     text-align: center;
     padding: 40px;
@@ -247,7 +238,6 @@
     margin-bottom: 20px;
 }
 
-/* Category Badge */
 .product-category {
     display: inline-block;
     background-color: #363636;
@@ -384,7 +374,6 @@
     background-color: #2563eb;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .products-container {
         flex-direction: column;

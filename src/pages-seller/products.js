@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles-seller/products.css';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext.js';
 
 const EditModal = ({ product, onClose, onSave }) => {
     const [formData, setFormData] = useState({

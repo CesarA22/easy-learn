@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Sidebar } from '../components/sidebar.js';
 import { SlidingCart } from '../components/sliding-cart.js';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext.js';
 import { ChevronLeft, ShoppingBag } from 'lucide-react';
 
 function ConsumeProduct() {

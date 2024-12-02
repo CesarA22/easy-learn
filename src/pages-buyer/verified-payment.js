@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, CheckCircle } from 'lucide-react';
-import { Logo } from '../components/logo';
+import { Logo } from '../components/logo.js';
 import '../styles-buyer/verified-payment.css';
 
 export function VerifiedPayment() {

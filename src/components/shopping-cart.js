@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, ShoppingCart as CartIcon, Minus, Plus, Trash2 } from 'lucide-react';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext.js';
 import { useNavigate } from 'react-router-dom';
 
 export const ShoppingCart = () => {
@@ -24,7 +24,7 @@ export const ShoppingCart = () => {
 
             <div
                 className={`
-        fixed right-0 top-0 h-full w-96 bg-gray-900 shadow-xl 
+        fixed right-0 top-0 h-full w-96 bg-gray-900 shadow-xl
         transform transition-transform duration-300 ease-in-out z-50
         ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}
       `}

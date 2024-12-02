@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Copy, Timer } from 'lucide-react';
-import { useCart } from '../context/CartContext';
-import { AuthContext } from '../context/AuthContext';
+import { useCart } from '../context/CartContext.js';
+import { AuthContext } from '../context/AuthContext.js';
 import { QRCodeCanvas } from 'qrcode.react';
 import '../styles-buyer/purchase-confirmation.css';
 

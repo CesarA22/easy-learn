@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles-buyer/user-screen-buyer.css';
-import { AuthContext } from '../context/AuthContext';
-import { Sidebar } from '../components/sidebar';
-import { SlidingCart } from '../components/sliding-cart';
+import { AuthContext } from '../context/AuthContext.js';
+import { Sidebar } from '../components/sidebar.js';
+import { SlidingCart } from '../components/sliding-cart.js';
 
 function UserScreenBuyer() {
     const navigate = useNavigate();
-    const { user, logout } = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

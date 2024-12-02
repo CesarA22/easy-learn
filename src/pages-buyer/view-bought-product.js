@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, Download } from 'lucide-react';
-import { Sidebar } from '../components/sidebar';
-import { SlidingCart } from '../components/sliding-cart';
+import { Sidebar } from '../components/sidebar.js';
+import { SlidingCart } from '../components/sliding-cart.js';
 import '../styles-buyer/view-bought-product.css';
 
 function ViewBoughtProduct() {

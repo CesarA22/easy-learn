@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext.js';
 import '../styles-seller/create-product.css';
 
 const CreateProduct = () => {

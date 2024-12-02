@@ -143,7 +143,6 @@
     color: #ff4d4d;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .view-bought-product__container {
         margin-left: 0;

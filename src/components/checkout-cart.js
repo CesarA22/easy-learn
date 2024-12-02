@@ -1,6 +1,6 @@
 import React from 'react';
 import { Minus, Plus, Trash2 } from 'lucide-react';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext.js';
 import './checkout-cart.styles.css';
 
 export const CheckoutCart = () => {
