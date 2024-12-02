@@ -36,12 +36,13 @@
 }
 
 .product-content {
-    background-color: #2d2d2d;
+    background-color: #1e1e1e;
     border-radius: 1rem;
     overflow: hidden;
     display: flex;
     gap: 2rem;
     padding: 2rem;
+    width: 92.5%;
 }
 
 .product-image {

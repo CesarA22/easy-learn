@@ -22,6 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 120vh;
 }
 
 .logo {
@@ -62,6 +63,12 @@ header h1 {
     gap: 20px;
 }
 
+.product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .product-upload,
 .product-details,
 .product-content {
@@ -71,11 +78,16 @@ header h1 {
 }
 
 .product-upload {
-    height: 400px;
+    flex: 1;
+    min-width: 250px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
 .product-content {
-    min-width: 97%;
+    width: 100%;
 }
 
 .product-form__wrapper {
@@ -92,6 +104,9 @@ header h1 {
 }
 
 .dashboard__main-content__col--2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     width: 100%;
 }
 
@@ -101,12 +116,13 @@ header h1 {
     align-items: center;
     justify-content: center;
     border: 2px dashed #555;
-    padding: 50px;
+    padding: 20px;
     text-align: center;
     cursor: pointer;
-    height: 230px;
 }
-
+.upload-box:hover {
+    border-color: #007bff;
+}
 .upload-button {
     background-color: #007bff;
     border: none;
@@ -136,13 +152,14 @@ header h1 {
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
 }
 
 .form-group label {
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .form-group input,
@@ -153,10 +170,6 @@ header h1 {
     border: 1px solid #555;
     background-color: #2b2b2b;
     color: #fff;
-}
-
-textarea {
-    resize: vertical;
 }
 
 .message {
@@ -189,13 +202,6 @@ textarea {
     margin-top: 0.5rem;
     color: #9ca3af;
     font-size: 0.875rem;
-}
-
-.upload-box {
-    border: 2px dashed #555;
-    padding: 2rem;
-    text-align: center;
-    margin-bottom: 1rem;
 }
 
 button:disabled {

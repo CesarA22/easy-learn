@@ -15,6 +15,7 @@ const CreateProduct = () => {
     });
     const [thumbnail, setThumbnail] = useState(null);
     const [productFile, setProductFile] = useState(null);
+    const [videoFile, setVideoFile] = useState(null);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = useState(false);
@@ -59,6 +60,18 @@ const CreateProduct = () => {
         }
     };
 
+    const handleVideoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            if (file.type === 'video/mp4') {
+                setVideoFile(file);
+                setError('');
+            } else {
+                setError('Por favor, selecione apenas arquivos MP4.');
+            }
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -89,6 +102,12 @@ const CreateProduct = () => {
             return;
         }
 
+        if (!videoFile) {
+            setError('Por favor, selecione um arquivo MP4 para o produto');
+            setLoading(false);
+            return;
+        }
+
         try {
             const token = localStorage.getItem('token');
             if (!token) {
@@ -104,6 +123,7 @@ const CreateProduct = () => {
             formDataToSend.append('content', formData.content.trim());
             formDataToSend.append('image', thumbnail);
             formDataToSend.append('pdf', productFile);
+            formDataToSend.append('video', videoFile);
 
             console.log('Dados sendo enviados:', {
                 title: formData.title.trim(),
@@ -113,6 +133,7 @@ const CreateProduct = () => {
                 content: formData.content.trim(),
                 image: thumbnail.name,
                 pdf: productFile.name,
+                video: videoFile.name,
             });
 
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products`, {
@@ -216,9 +237,6 @@ const CreateProduct = () => {
                                     placeholder="Digite a categoria do produto"
                                     required
                                 />
-                                <small className="helper-text">
-                                    Digite qualquer categoria para seu produto
-                                </small>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="productDescription">Descrição do produto:</label>
@@ -243,9 +261,6 @@ const CreateProduct = () => {
                                     placeholder="Digite apenas números"
                                     required
                                 />
-                                <small className="helper-text">
-                                    Digite apenas números, sem pontos ou vírgulas
-                                </small>
                             </div>
                         </div>
                     </div>
@@ -284,6 +299,23 @@ const CreateProduct = () => {
                                 {productFile && (
                                     <div className="file-info">
                                         Arquivo selecionado: {productFile.name}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="product-upload">
+                            <p>Arquivo do produto (MP4):</p>
+                            <div className="upload-box">
+                                <input
+                                    type="file"
+                                    accept="video/mp4"
+                                    onChange={handleVideoChange}
+                                    className="upload-input"
+                                    required
+                                />
+                                {videoFile && (
+                                    <div className="file-info">
+                                        Arquivo selecionado: {videoFile.name}
                                     </div>
                                 )}
                             </div>
