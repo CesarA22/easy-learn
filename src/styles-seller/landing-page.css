@@ -9,7 +9,6 @@ body .lp {
     margin: 0px auto;
 }
 
-/* navbar */
 .lp__logo {
     display: flex;
     align-items: center;
@@ -49,7 +48,6 @@ body .lp {
     gap: 22px;
 }
 
-/* buttons */
 .lp__btn--secondary {
     color: white;
     cursor: pointer;
@@ -83,7 +81,6 @@ body .lp {
     transition: all 300ms;
 }
 
-/* header */
 .lp__header {
     background: #1c1c1c;
     padding-bottom: 10vh;
@@ -140,7 +137,6 @@ body .lp {
     float: right;
 }
 
-/* guides */
 .lp__guides {
     background: #363636;
     padding-top: 50px;

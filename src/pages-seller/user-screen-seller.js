@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext.js';
 
 function UserScreenSeller() {
     const navigate = useNavigate();
-    const { user, logout } = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
