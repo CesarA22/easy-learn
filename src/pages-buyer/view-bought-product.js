@@ -129,16 +129,29 @@ function ViewBoughtProduct() {
                         <h2>Conteúdo do Curso</h2>
                         {product?.File?.map((file, index) => (
                             <div key={index} className="file-item">
-                                {file.filename[0].endsWith('.pdf') ? (
+                                {file.filename[0].endsWith('.pdf') && (
                                     <div className="pdf-viewer">
                                         <iframe
-                                            src={`${process.env.REACT_APP_BACKEND_URL}${file.path[0]}`}
-                                            title="PDF Viewer"
+                                            src={`${process.env.REACT_APP_BACKEND_URL}/${file.path[0]}`}
+                                            title={`PDF Viewer - ${file.filename[0]}`}
                                             width="100%"
                                             height="600px"
                                         />
                                     </div>
-                                ) : null}
+                                )}
+
+                                {file.filename[0].endsWith('.mp4') && (
+                                    <div className="video-viewer">
+                                        <video
+                                            controls
+                                            width="100%"
+                                            height="400px"
+                                            src={`${process.env.REACT_APP_BACKEND_URL}/${file.path[0]}`}
+                                        >
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                )}
 
                                 <button
                                     onClick={() => handleDownload(file.path[0])}

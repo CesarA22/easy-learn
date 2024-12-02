@@ -113,6 +113,19 @@
     overflow: hidden;
 }
 
+.video-viewer {
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: black;
+}
+
+.video-viewer video {
+    width: 100%;
+    border-radius: 0.5rem;
+    outline: none;
+}
+
 .download-button {
     display: flex;
     align-items: center;
@@ -141,23 +154,4 @@
 
 .error-message {
     color: #ff4d4d;
-}
-
-@media (max-width: 768px) {
-    .view-bought-product__container {
-        margin-left: 0;
-        padding: 1rem;
-    }
-
-    .product-cover {
-        height: 300px;
-    }
-
-    .product-content {
-        padding: 1.5rem;
-    }
-
-    .product-content h1 {
-        font-size: 1.5rem;
-    }
 }
