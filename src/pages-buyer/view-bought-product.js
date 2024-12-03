@@ -45,7 +45,7 @@ function ViewBoughtProduct() {
     const handleDownload = async (fileUrl) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${fileUrl}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/${fileUrl}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -114,8 +114,8 @@ function ViewBoughtProduct() {
                 </div>
 
                 <div className="product-content">
-                    <h1>{product?.title}</h1>
-                    <div className="product-meta">
+                    <div className="product-header-row">
+                        <h1 className="product-title">{product?.title}</h1>
                         <span className="product-category">{product?.category?.name}</span>
                         <span className="product-author">Por: {product?.author?.name}</span>
                     </div>
@@ -126,7 +126,7 @@ function ViewBoughtProduct() {
                     </div>
 
                     <div className="product-files">
-                        <h2>Conteúdo do Curso</h2>
+                        <h2 className="product-files-header">Conteúdo do Curso</h2>
                         {product?.File?.map((file, index) => (
                             <div key={index} className="file-item">
                                 {file.filename[0].endsWith('.pdf') && (

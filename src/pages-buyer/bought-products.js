@@ -55,7 +55,6 @@ function BoughtProducts() {
 
                 // Extrair produtos únicos de todos os pedidos
                 const boughtProducts = data.reduce((acc, order) => {
-                    // Verificar se order.items existe e é um array
                     if (!order.items || !Array.isArray(order.items)) return acc;
 
                     const orderProducts = order.items.map((item) => ({
@@ -66,6 +65,7 @@ function BoughtProducts() {
                         price: item.product.price,
                         image: item.product.image,
                         categories: item.product.category ? [item.product.category.name] : [],
+                        author: item.product.author,
                         purchaseDate: order.createdAt,
                     }));
 
