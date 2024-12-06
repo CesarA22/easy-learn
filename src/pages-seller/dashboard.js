@@ -59,11 +59,14 @@ function Dashboard() {
                 if (!salesResponse.ok || !summaryResponse.ok || !extractResponse.ok) {
                     throw new Error('Failed to fetch data');
                 }
-                const salesResponseData = await salesResponse.json();
+                const { dailySales } = await salesResponse.json();
                 const summaryResponseData = await summaryResponse.json();
                 const extractResponseData = await extractResponse.json();
 
-                setSalesToday(salesResponseData?.salesToday || 0);
+                const today = new Date().toISOString().split('T')[0];
+                const todaySales = dailySales.find((data) => data.date === today)?.sales || 0;
+
+                setSalesToday(todaySales);
                 setSummary({
                     available: summaryResponseData?.available || 0,
                     pending: summaryResponseData?.pending || 0,
@@ -71,8 +74,7 @@ function Dashboard() {
                     total: summaryResponseData?.total || 0,
                 });
                 setExtract(extractResponseData || []);
-
-                setSalesData(salesResponseData?.dailySales || []);
+                setSalesData(dailySales);
             } catch (err) {
                 setError('Erro ao carregar dados do painel.');
             } finally {
@@ -87,7 +89,7 @@ function Dashboard() {
         labels: salesData.map((data) => data.date),
         datasets: [
             {
-                label: 'Vendas por Dia',
+                label: 'Vendas no dia',
                 data: salesData.map((data) => data.sales),
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
